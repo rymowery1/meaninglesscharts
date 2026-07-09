@@ -1,0 +1,57 @@
+---
+import Layout from "../components/Layout.astro";
+---
+<Layout title="Methodology">
+  <h1>Methodology</h1>
+  <p>
+    <strong>The data is real. The relationship is not.</strong> Here's exactly how a chart on
+    this site gets made.
+  </p>
+
+  <h2>1. Fetch</h2>
+  <p>
+    Every dataset is pulled by a script directly from the source's own public API — never typed
+    in by hand. Each fetch is recorded with a timestamp, the exact request URL used, and a
+    provenance tag, so it's traceable back to a real API response.
+  </p>
+
+  <h2>2. Pair</h2>
+  <p>
+    Two datasets are only paired if they come from unrelated domains, come from different
+    source organizations, share the same frequency (no mixing daily with monthly), and overlap
+    in time by enough points to be worth showing. Domain pairs that plausibly do influence each
+    other — weather and air quality, economy and agriculture — are blocked outright, regardless
+    of what the numbers show.
+  </p>
+
+  <h2>3. Normalize</h2>
+  <p>
+    Both series are indexed to 100 at the first date they share, so two very differently scaled
+    numbers (a population count and a temperature reading, say) can sit on one chart. A series
+    that's zero or negative at that starting point, or crosses zero anywhere in the shared
+    window, can't be indexed this way without distorting its shape — so that pairing is rejected
+    outright rather than patched with an offset or a different start date.
+  </p>
+
+  <h2>4. Present</h2>
+  <p>
+    Every chart ships with a fake-serious "insight," an immediate reveal explaining why it
+    doesn't hold up, and a source panel showing both datasets' organizations, licenses, date
+    ranges, units, and the exact baseline values used to compute the index. None of these four
+    pieces appears without the others.
+  </p>
+
+  <p class="disclaimer-line">
+    Shared movement does not imply relationship, influence, or causation.
+  </p>
+</Layout>
+
+<style>
+  .disclaimer-line {
+    font-style: italic;
+    color: var(--color-muted);
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    margin-top: 2rem;
+  }
+</style>

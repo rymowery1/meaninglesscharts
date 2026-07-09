@@ -1,0 +1,131 @@
+---
+import type { GeneratedChart } from "../data/types";
+import ChartCard from "./ChartCard.astro";
+
+interface Props {
+  charts: GeneratedChart[];
+}
+const { charts } = Astro.props;
+---
+{charts.length === 0 ? (
+  <p class="placeholder-note">
+    No valid, launch-ready chart pairings exist right now. This is a real error state, not a
+    placeholder — check docs/data/dataset-catalog.md and src/data/pairings.json.
+  </p>
+) : (
+  <div class="chart-generator" data-chart-generator>
+    <div class="chart-generator-controls">
+      <button type="button" data-generate-button>Generate another meaningless chart</button>
+    </div>
+    {charts.map((chart, i) => <ChartCard chart={chart} active={i === 0} />)}
+  </div>
+)}
+
+<style>
+  .chart-generator-controls {
+    margin-bottom: 1.25rem;
+  }
+  button[data-generate-button] {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.1rem;
+    cursor: pointer;
+  }
+  button[data-generate-button]:hover {
+    opacity: 0.9;
+  }
+</style>
+
+<script>
+  import Chart from "chart.js/auto";
+
+  function formatLabel(date: string, frequency: string): string {
+    if (frequency === "annual") return date.slice(0, 4);
+    if (frequency === "monthly") return date.slice(0, 7);
+    return date;
+  }
+
+  const generator = document.querySelector<HTMLElement>("[data-chart-generator]");
+  if (generator) {
+    const cards = Array.from(generator.querySelectorAll<HTMLElement>("[data-chart-card]"));
+    const charts = new Map<string, Chart>();
+
+    function renderChart(card: HTMLElement) {
+      const id = card.dataset.chartId!;
+      if (charts.has(id)) return;
+
+      const jsonEl = card.querySelector<HTMLScriptElement>("[data-chart-json]");
+      const canvas = card.querySelector<HTMLCanvasElement>("[data-chart-canvas]");
+      if (!jsonEl || !canvas) return;
+
+      const data = JSON.parse(jsonEl.textContent ?? "{}");
+      const labels = (data.labels as string[]).map((d) => formatLabel(d, data.frequency));
+
+      const chart = new Chart(canvas, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: data.aLabel,
+              data: data.aValues,
+              borderColor: "#8a3b2e",
+              backgroundColor: "#8a3b2e",
+              pointRadius: 0,
+              borderWidth: 2,
+              tension: 0.15,
+            },
+            {
+              label: data.bLabel,
+              data: data.bValues,
+              borderColor: "#2e5f8a",
+              backgroundColor: "#2e5f8a",
+              pointRadius: 0,
+              borderWidth: 2,
+              tension: 0.15,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              title: { display: true, text: "Indexed to 100 at baseline" },
+            },
+          },
+          plugins: {
+            legend: { position: "bottom" },
+          },
+        },
+      });
+      charts.set(id, chart);
+    }
+
+    function showCard(target: HTMLElement) {
+      for (const card of cards) {
+        const isTarget = card === target;
+        card.hidden = !isTarget;
+        card.dataset.active = isTarget ? "true" : "false";
+      }
+      renderChart(target);
+    }
+
+    const initialCard = cards.find((c) => c.dataset.active === "true");
+    if (initialCard) renderChart(initialCard);
+
+    const button = generator.querySelector<HTMLButtonElement>("[data-generate-button]");
+    button?.addEventListener("click", () => {
+      const current = cards.find((c) => c.dataset.active === "true");
+      const others = cards.filter((c) => c !== current);
+      const pool = others.length > 0 ? others : cards;
+      const next = pool[Math.floor(Math.random() * pool.length)];
+      showCard(next);
+    });
+  }
+</script>

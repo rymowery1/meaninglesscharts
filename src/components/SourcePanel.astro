@@ -1,0 +1,126 @@
+---
+import type { GeneratedChart } from "../data/types";
+import DatasetBadge from "./DatasetBadge.astro";
+
+interface Props {
+  chart: GeneratedChart;
+}
+const { chart } = Astro.props;
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// Formats a "YYYY-MM-DD" string directly, without going through Date/local
+// timezone conversion — parsing an ISO date via `new Date()` and formatting
+// with toLocaleDateString shifts the displayed day back by one in any
+// timezone behind UTC (e.g. "1960-01-01" renders as "Dec 31, 1959").
+function fmtDate(iso: string): string {
+  const [year, month, day] = iso.split("-").map(Number);
+  return `${MONTHS[month - 1]} ${day}, ${year}`;
+}
+function fmtNum(n: number): string {
+  return n.toLocaleString("en-US", { maximumFractionDigits: 2 });
+}
+
+const first = chart.points[0];
+const last = chart.points[chart.points.length - 1];
+---
+<section class="source-panel" aria-label="Chart sources and methodology">
+  <h3>Sources</h3>
+  <div class="source-panel-grid">
+    <div class="source-entry">
+      <DatasetBadge domain={chart.datasetA.domain} />
+      <p class="source-label">{chart.datasetA.label}</p>
+      <dl>
+        <dt>Source</dt>
+        <dd><a href={chart.datasetA.sourceUrl} rel="noopener noreferrer">{chart.datasetA.sourceOrganization}</a></dd>
+        <dt>Geography</dt>
+        <dd>{chart.datasetA.geography}</dd>
+        <dt>Unit</dt>
+        <dd>{chart.datasetA.unit}</dd>
+        <dt>Full date range</dt>
+        <dd>{fmtDate(chart.datasetA.dateRange.start as string)} – {fmtDate(chart.datasetA.dateRange.end as string)}</dd>
+        <dt>Baseline value ({fmtDate(chart.normalizationBaselineDate)})</dt>
+        <dd>{fmtNum(first.aOriginal)} {chart.datasetA.unit}</dd>
+      </dl>
+    </div>
+    <div class="source-entry">
+      <DatasetBadge domain={chart.datasetB.domain} />
+      <p class="source-label">{chart.datasetB.label}</p>
+      <dl>
+        <dt>Source</dt>
+        <dd><a href={chart.datasetB.sourceUrl} rel="noopener noreferrer">{chart.datasetB.sourceOrganization}</a></dd>
+        <dt>Geography</dt>
+        <dd>{chart.datasetB.geography}</dd>
+        <dt>Unit</dt>
+        <dd>{chart.datasetB.unit}</dd>
+        <dt>Full date range</dt>
+        <dd>{fmtDate(chart.datasetB.dateRange.start as string)} – {fmtDate(chart.datasetB.dateRange.end as string)}</dd>
+        <dt>Baseline value ({fmtDate(chart.normalizationBaselineDate)})</dt>
+        <dd>{fmtNum(first.bOriginal)} {chart.datasetB.unit}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <dl class="chart-meta">
+    <dt>Normalization</dt>
+    <dd>{chart.normalization}, at {fmtDate(chart.normalizationBaselineDate)}</dd>
+    <dt>Shared window shown</dt>
+    <dd>{fmtDate(first.date)} – {fmtDate(last.date)} ({chart.points.length} points, {chart.datasetA.frequency})</dd>
+  </dl>
+
+  <p class="disclaimer">{chart.disclaimer}</p>
+</section>
+
+<style>
+  .source-panel {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+  }
+  .source-panel h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    margin: 0 0 0.75rem;
+  }
+  .source-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 40rem) {
+    .source-panel-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .source-label {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    margin: 0.4rem 0 0.5rem;
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.15rem 0.75rem;
+  }
+  dt {
+    color: var(--color-muted);
+  }
+  dd {
+    margin: 0;
+  }
+  .chart-meta {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--color-border);
+  }
+  .disclaimer {
+    margin-top: 1rem;
+    font-style: italic;
+    color: var(--color-muted);
+  }
+</style>

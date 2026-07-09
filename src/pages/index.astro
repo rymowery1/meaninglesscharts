@@ -1,0 +1,20 @@
+---
+import Layout from "../components/Layout.astro";
+import ChartGenerator from "../components/ChartGenerator.astro";
+import ExampleGallery from "../components/ExampleGallery.astro";
+import MethodologyNote from "../components/MethodologyNote.astro";
+import { buildAllCharts } from "../utils/chart-data";
+
+const rootDir = `${process.cwd()}/`;
+const charts = buildAllCharts(rootDir);
+---
+<Layout title="Generator">
+  <h1>Meaningless Charts</h1>
+  <p>
+    Two unrelated, real, publicly sourced datasets — plotted together on one chart
+    so they <em>look</em> related. They aren't.
+  </p>
+  <MethodologyNote />
+  <ChartGenerator charts={charts} />
+  <ExampleGallery charts={charts} />
+</Layout>

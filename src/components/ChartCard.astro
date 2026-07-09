@@ -1,0 +1,47 @@
+---
+import type { GeneratedChart } from "../data/types";
+import RevealPanel from "./RevealPanel.astro";
+import SourcePanel from "./SourcePanel.astro";
+
+interface Props {
+  chart: GeneratedChart;
+  active?: boolean;
+}
+const { chart, active = false } = Astro.props;
+
+const chartJsData = {
+  id: chart.id,
+  frequency: chart.datasetA.frequency,
+  labels: chart.points.map((p) => p.date),
+  aLabel: chart.datasetA.label,
+  bLabel: chart.datasetB.label,
+  aValues: chart.points.map((p) => p.aIndexed),
+  bValues: chart.points.map((p) => p.bIndexed),
+};
+---
+<article class="chart-card" data-chart-card data-chart-id={chart.id} data-active={active ? "true" : "false"} hidden={!active}>
+  <h2 class="chart-title">{chart.title}</h2>
+  <div class="chart-canvas-wrap">
+    <canvas data-chart-canvas aria-label={`Line chart: ${chart.title}, indexed to 100 at ${chart.normalizationBaselineDate}`} role="img"></canvas>
+  </div>
+  <script type="application/json" is:inline data-chart-json set:html={JSON.stringify(chartJsData)} />
+  <RevealPanel fakeInsight={chart.fakeInsight} reveal={chart.reveal} />
+  <SourcePanel chart={chart} />
+</article>
+
+<style>
+  .chart-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .chart-title {
+    font-size: 1.2rem;
+    margin: 0 0 1rem;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 18rem;
+  }
+</style>

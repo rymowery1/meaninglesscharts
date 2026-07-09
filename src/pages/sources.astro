@@ -1,0 +1,82 @@
+---
+import Layout from "../components/Layout.astro";
+import DatasetBadge from "../components/DatasetBadge.astro";
+import { loadDatasets } from "../utils/chart-data";
+
+const rootDir = `${process.cwd()}/`;
+const datasets = loadDatasets(rootDir);
+---
+<Layout title="Sources">
+  <h1>Sources</h1>
+  <p>
+    Every dataset behind this site is real, fetched by a script from the source's own public
+    API, and re-checked against the rules below before it's eligible to appear in a chart. The
+    pairing is manufactured. The numbers are not.
+  </p>
+
+  <ul class="dataset-list">
+    {datasets.map((d) => (
+      <li>
+        <div class="dataset-list-header">
+          <strong>{d.label}</strong>
+          <DatasetBadge domain={d.domain} />
+        </div>
+        <dl>
+          <dt>Source</dt>
+          <dd><a href={d.sourceUrl} rel="noopener noreferrer">{d.sourceOrganization}</a></dd>
+          <dt>Geography</dt>
+          <dd>{d.geography}</dd>
+          <dt>Frequency</dt>
+          <dd>{d.frequency}</dd>
+          <dt>Unit</dt>
+          <dd>{d.unit}</dd>
+          <dt>Date range</dt>
+          <dd>{d.dateRange.start} – {d.dateRange.end}</dd>
+          <dt>License</dt>
+          <dd>{d.licenseOrReuseNotes}</dd>
+          <dt>Methodology</dt>
+          <dd>{d.methodologyNotes}</dd>
+          <dt>Status</dt>
+          <dd>{d.launchReady ? "launch-ready" : d.verificationStatus}</dd>
+        </dl>
+      </li>
+    ))}
+  </ul>
+</Layout>
+
+<style>
+  .dataset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .dataset-list > li {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+  .dataset-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .dataset-list dl {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.2rem 0.75rem;
+  }
+  .dataset-list dt {
+    color: var(--color-muted);
+  }
+  .dataset-list dd {
+    margin: 0;
+  }
+</style>

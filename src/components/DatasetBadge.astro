@@ -1,0 +1,21 @@
+---
+interface Props {
+  domain: string;
+}
+const { domain } = Astro.props;
+---
+<span class="dataset-badge">{domain}</span>
+
+<style>
+  .dataset-badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+</style>

@@ -1,0 +1,14 @@
+[
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "nasa-power-temp-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-internet-users-pct-annual"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-enwiki-pageviews-monthly"
+  }
+]

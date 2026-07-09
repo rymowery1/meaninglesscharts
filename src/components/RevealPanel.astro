@@ -1,0 +1,41 @@
+---
+interface Props {
+  fakeInsight: string;
+  reveal: string;
+}
+const { fakeInsight, reveal } = Astro.props;
+---
+<div class="reveal-panel">
+  <p class="fake-insight">{fakeInsight}</p>
+  <details class="reveal-details">
+    <summary>Why this is meaningless</summary>
+    <p class="reveal-text">{reveal}</p>
+  </details>
+</div>
+
+<style>
+  .reveal-panel {
+    margin: 1.25rem 0;
+  }
+  .fake-insight {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .reveal-details {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+  }
+  .reveal-details summary {
+    cursor: pointer;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .reveal-text {
+    margin-top: 0.5rem;
+    color: var(--color-text);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+  }
+</style>
