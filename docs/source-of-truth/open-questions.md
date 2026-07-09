@@ -15,12 +15,20 @@ These block later phases and require a user decision, a source lookup, or verifi
 
 - Phase 6/7 (chart generator UI) is built and verified working in a real browser: all 3 pairings render, reveal toggle works, "Generate another" swaps charts, Sources/Methodology pages show real content. A real timezone-related date-display bug was found and fixed during this verification.
 
+## Resolved (2026-07-09, continued further)
+
+- Pushed to GitHub (`rymowery1/meaninglesscharts`) at the user's request; working locally going forward, deploy target deliberately deferred.
+- Ran full `/interpretation-audit` + `/qa-launch`: no unsupported claims found, all verification commands pass. See `docs/qa/interpretation-review.md` and `docs/qa/qa-report.md`.
+- `docs/data/dataset-catalog.md` staleness fixed.
+- `npm run audit:claims` now exists (`scripts/audit-claims.ts`).
+- 404 page (`src/pages/404.astro`) and OG image (`public/og/og-image.svg`, wired into `Layout.astro`) added — both placeholder-quality but real, non-fabricated assets.
+- Accessibility: chart-generator swap now has an `aria-live` announcement.
+
 ## NEEDS_USER_DECISION
 
-- Deploy target (Vercel / Netlify / Cloudflare Pages / other) — not chosen yet. This is now the main thing standing between the current state and an actual public launch.
+- Deploy target (Vercel / Netlify / Cloudflare Pages / other) — not chosen yet; user has said not yet, work locally only for now.
 - Whether to register for BLS and OpenAQ API keys to expand past the current 3 pairings, or ship with what exists now.
-- OG image (`public/og/`) is still empty — needed before launch per the checklist.
-- No 404 page exists yet.
+- OG image is still placeholder-quality (plain SVG, not final branding) — fine for local work, revisit before a real public launch.
 
 ## NEEDS_VERIFICATION
 

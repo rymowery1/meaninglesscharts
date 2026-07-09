@@ -19,7 +19,8 @@
     "fetch:all": "npm run fetch:worldbank && npm run fetch:nasa && npm run fetch:usgs && npm run fetch:wikimedia",
     "validate:data": "tsx scripts/validate-datasets.ts",
     "validate:pairings": "tsx scripts/validate-pairings.ts",
-    "generate:pairings": "tsx scripts/generate-sample-pairings.ts"
+    "generate:pairings": "tsx scripts/generate-sample-pairings.ts",
+    "audit:claims": "tsx scripts/audit-claims.ts"
   },
   "dependencies": {
     "astro": "^7.0.7",

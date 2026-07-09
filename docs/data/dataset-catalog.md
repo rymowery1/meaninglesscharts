@@ -1,8 +1,8 @@
 # Dataset Catalog
 
-Candidate datasets for the initial cache, drawn only from the four keyless approved sources (World Bank, NASA POWER, USGS, Wikimedia Pageviews) so a first chart can exist before BLS/OpenAQ key registration happens. **Nothing here is launch-ready.** Every entry is `verificationStatus: "proposed"`, `launchReady: false` — real values, exact date ranges, and exact API query parameters only get confirmed once a fetcher script in `scripts/fetch-data/` actually runs (Phase 4). This list needs a `NEEDS_USER_DECISION` sign-off before Phase 4 fetcher scripts get written for it.
+Dataset cache drawn from the four keyless approved sources (World Bank, NASA POWER, USGS, Wikimedia Pageviews). **Update, 2026-07-09: all 8 datasets below are implemented, not proposed.** Every entry is `verificationStatus: "approved"`, `launchReady: true`, with real fetched values, confirmed date ranges, and real API query parameters (fetcher scripts in `scripts/fetch-data/` have run — see `decision-log.md`). The table below is kept as historical reference for each indicator's origin; treat `src/data/datasets.json` and `src/data/series/` as the actual source of truth for current values.
 
-Mirrored in `src/data/datasets.json` as `DatasetMeta` entries (metadata only — no `src/data/series/` files exist yet).
+Mirrored in `src/data/datasets.json` as `DatasetMeta` entries, with matching series files in `src/data/series/`.
 
 ## Candidates
 
@@ -29,13 +29,12 @@ Verified by running the actual `checkPairing()` logic (`src/utils/pairings.ts`) 
 - **`nasa-power-temp-annual`** (weather) **+ `worldbank-internet-users-pct-annual`** (global-indicators, annual, 2005–2025, all positive) — different orgs, `weather`+`global-indicators` not blocked
 - **`usgs-quakes-m5-5-monthly-count`** (physical-events, monthly, 2000-01–2026-06, all positive) **+ `wikimedia-enwiki-pageviews-monthly`** (culture-attention, monthly, 2015-07–2026-06, all positive) — 132 shared points (min for monthly is 14)
 
-None of these are in `src/data/pairings.json` yet — `checkPairing()` also requires `launchReady: true` and `verificationStatus: "approved"`, and every dataset is still gated on `licenseOrReuseNotes` being `NEEDS_SOURCE`. `npm run generate:pairings` currently writes an empty array for exactly that reason; it reports the 3 above as "structurally ready, gated on launch status only" so it's visible what's one license confirmation away from shipping.
+**Update, 2026-07-09:** all 8 datasets now have confirmed `licenseOrReuseNotes` (verified live via WebFetch against each source's actual terms page — see `decision-log.md`) and are `verificationStatus: "approved"`, `launchReady: true`. `npm run generate:pairings` re-ran and wrote all 3 pairings above to `src/data/pairings.json` for real (no longer an empty array). `npm run validate:pairings` confirms all 3 pass. This catalog is no longer "proposed" — it reflects what's actually shipped.
 
-`worldbank-forest-area-pct-annual` (environment) and `worldbank-agricultural-land-pct-annual` (agriculture) have no valid partner in this 8-dataset set — kept in the catalog for when a non-World-Bank, non-NASA-POWER source joins (e.g. BLS or OpenAQ).
+`worldbank-forest-area-pct-annual` (environment) and `worldbank-agricultural-land-pct-annual` (agriculture) still have no valid partner in this 8-dataset set — kept in the catalog for when a non-World-Bank, non-NASA-POWER source joins (e.g. BLS or OpenAQ).
 
-## Open items before this catalog can move past "proposed"
+## Status
 
-1. User sign-off on this specific list (or a different set of indicators).
-2. A decision on `nasa-power-temp-annual`'s geography (single city vs. regional/global average).
-3. Verification of whether annual/monthly frequencies are natively queryable per dataset above, versus requiring client-side aggregation (which the pairing rules forbid in the MVP).
-4. Actual fetcher scripts (Phase 4) confirming real date ranges, point counts, and license terms.
+Resolved — this catalog is implemented, not just proposed. Remaining open items (deploy target,
+whether to register BLS/OpenAQ keys to expand past 3 pairings) are tracked in
+`docs/source-of-truth/open-questions.md`, not here.
