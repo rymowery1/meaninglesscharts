@@ -12,10 +12,6 @@ const NAV_LINKS = [
     <div class="site-tagline">The data is real. The relationship is not.</div>
   </div>
 
-  <nav class="site-nav" aria-label="Primary">
-    {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
-  </nav>
-
   <details class="nav-menu">
     <summary class="nav-menu-toggle" aria-label="Menu">
       <span class="hamburger-icon" aria-hidden="true"></span>
@@ -28,7 +24,7 @@ const NAV_LINKS = [
 
 <style>
   .nav-menu {
-    display: none;
+    position: relative;
   }
   .nav-menu-toggle {
     cursor: pointer;
@@ -66,28 +62,29 @@ const NAV_LINKS = [
     top: 6px;
   }
   .nav-menu-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    min-width: 10rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
     font-family: var(--font-sans);
     font-size: var(--text-body-sans-s-size);
-    padding-top: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    z-index: 10;
   }
   .nav-menu-panel a {
     text-decoration: none;
     color: var(--color-text);
+    white-space: nowrap;
   }
   .nav-menu-panel a:hover {
     color: var(--color-accent);
-  }
-
-  @media (max-width: 39.99rem) {
-    .site-nav {
-      display: none;
-    }
-    .nav-menu {
-      display: block;
-      width: 100%;
-    }
   }
 </style>
