@@ -1,11 +1,50 @@
 :root {
   --color-bg: #faf9f6;
-  --color-text: #1a1a1a;
+  --color-text: #000000;
   --color-muted: #6b6b6b;
   --color-border: #dddad2;
   --color-accent: #8a3b2e;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Epilogue is the sans/display face; true Baskerville isn't available as a
+     webfont, so Libre Baskerville (the open equivalent) is the serif face,
+     with system Baskerville tried first for macOS/iOS. */
+  --font-sans: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Baskerville", "Libre Baskerville", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+
+  /* Type ramp. Display/Headline sizes use clamp() so the largest sizes (up to
+     100px) scale down on narrow viewports instead of overflowing; the desktop
+     end of each clamp matches the spec exactly. Display M, Headline S, Body
+     Sans S, and Label S are additions to the original 8-row ramp, added to
+     cover sizes the site actually needs (card titles, secondary UI copy,
+     small badges) that fell between the given steps. */
+  --text-display-xl-size: clamp(2.75rem, 2rem + 5vw, 6.25rem);
+  --text-display-xl-leading: 0.95;
+  --text-display-xl-tracking: -0.04em;
+
+  --text-display-l-size: clamp(2.25rem, 1.6rem + 3vw, 3.5rem);
+  --text-display-l-leading: 1;
+  --text-display-l-tracking: -0.0536em;
+
+  --text-display-m-size: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem);
+  --text-display-m-leading: 1.08;
+  --text-display-m-tracking: -0.04em;
+
+  --text-headline-m-size: clamp(1.5rem, 1.35rem + 0.6vw, 1.875rem);
+  --text-headline-m-leading: 1.1;
+  --text-headline-m-tracking: -0.033em;
+
+  --text-headline-s-size: 1.375rem; /* 22px */
+  --text-headline-s-leading: 1.2;
+  --text-headline-s-tracking: -0.02em;
+
+  --text-body-sans-size: 1rem; /* 16px */
+  --text-body-sans-s-size: 0.875rem; /* 14px */
+  --text-label-size: 0.8125rem; /* 13px */
+  --text-label-s-size: 0.6875rem; /* 11px */
+
+  --text-serif-l-size: 1.25rem; /* 20px */
+  --text-serif-m-size: 1rem; /* 16px */
+  --text-serif-s-size: 0.8125rem; /* 13px */
 }
 
 * {
@@ -22,11 +61,88 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-serif);
+  font-size: var(--text-serif-m-size);
   line-height: 1.5;
 }
 
 a {
   color: var(--color-accent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  margin: 0 0 0.75rem;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--text-display-l-size);
+  line-height: var(--text-display-l-leading);
+  letter-spacing: var(--text-display-l-tracking);
+}
+
+h1.text-display-xl {
+  font-size: var(--text-display-xl-size);
+  line-height: var(--text-display-xl-leading);
+  letter-spacing: var(--text-display-xl-tracking);
+}
+
+h2 {
+  font-size: var(--text-headline-m-size);
+  line-height: var(--text-headline-m-leading);
+  letter-spacing: var(--text-headline-m-tracking);
+}
+
+h3 {
+  font-size: var(--text-label-size);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+/* Type-scale utility classes, for elements that need a ramp role other than
+   the h1/h2/h3 defaults above. */
+.text-body-sans {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sans-size);
+}
+.text-body-sans-s {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sans-s-size);
+}
+.text-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-label-size);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.text-label-s {
+  font-family: var(--font-sans);
+  font-size: var(--text-label-s-size);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.text-headline-s {
+  font-family: var(--font-sans);
+  font-size: var(--text-headline-s-size);
+  line-height: var(--text-headline-s-leading);
+  letter-spacing: var(--text-headline-s-tracking);
+}
+.text-serif-l {
+  font-family: var(--font-serif);
+  font-size: var(--text-serif-l-size);
+}
+.text-serif-m {
+  font-family: var(--font-serif);
+  font-size: var(--text-serif-m-size);
+}
+.text-serif-s {
+  font-family: var(--font-serif);
+  font-size: var(--text-serif-s-size);
 }
 
 .site-shell {
@@ -46,7 +162,8 @@ a {
 }
 
 .site-title {
-  font-size: 1.15rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-headline-s-size);
   font-weight: 700;
   text-decoration: none;
   color: var(--color-text);
@@ -55,7 +172,7 @@ a {
 
 .site-tagline {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--text-body-sans-s-size);
   color: var(--color-muted);
   font-style: italic;
 }
@@ -64,7 +181,7 @@ a {
   display: flex;
   gap: 1rem;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: var(--text-body-sans-s-size);
 }
 
 .site-nav a {
@@ -81,13 +198,13 @@ a {
   padding-top: 1.25rem;
   border-top: 1px solid var(--color-border);
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--text-body-sans-s-size);
   color: var(--color-muted);
 }
 
 .placeholder-note {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: var(--text-body-sans-s-size);
   color: var(--color-muted);
   border: 1px dashed var(--color-border);
   padding: 0.75rem 1rem;
