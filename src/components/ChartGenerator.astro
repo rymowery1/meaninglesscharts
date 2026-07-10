@@ -51,17 +51,6 @@ const { charts, showAll = false } = Astro.props;
   button[data-generate-button]:hover {
     opacity: 0.9;
   }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
 </style>
 
 <script>
@@ -75,13 +64,18 @@ const { charts, showAll = false } = Astro.props;
 
   // Chart lines use neutral text/muted colors, not the divergent scale — the
   // two series are arbitrary unrelated datasets with no real "winner," so a
-  // green/red gain-loss pairing would misleadingly imply one. Reads from
-  // global.css so the chart and the rest of the page share one source of truth.
-  const rootStyle = getComputedStyle(document.documentElement);
-  const seriesAColor = rootStyle.getPropertyValue("--color-text").trim() || "#111111";
-  const seriesBColor = rootStyle.getPropertyValue("--color-muted").trim() || "#7a7a7a";
-  const gridColor = rootStyle.getPropertyValue("--color-border").trim() || "#d9d9d6";
-  const bgColor = rootStyle.getPropertyValue("--color-bg").trim() || "#ffffff";
+  // green/red gain-loss pairing would misleadingly imply one. Read fresh
+  // (not cached) each time a chart is built, since the theme toggle in
+  // Header.astro can change these CSS variables after page load.
+  function getThemeColors() {
+    const rootStyle = getComputedStyle(document.documentElement);
+    return {
+      seriesAColor: rootStyle.getPropertyValue("--color-text").trim() || "#111111",
+      seriesBColor: rootStyle.getPropertyValue("--color-muted").trim() || "#7a7a7a",
+      gridColor: rootStyle.getPropertyValue("--color-border").trim() || "#d9d9d6",
+      bgColor: rootStyle.getPropertyValue("--color-bg").trim() || "#ffffff",
+    };
+  }
 
   const generator = document.querySelector<HTMLElement>("[data-chart-generator]");
   if (generator) {
@@ -99,6 +93,7 @@ const { charts, showAll = false } = Astro.props;
 
       const data = JSON.parse(jsonEl.textContent ?? "{}");
       const labels = (data.labels as string[]).map((d) => formatLabel(d, data.frequency));
+      const { seriesAColor, seriesBColor, gridColor, bgColor } = getThemeColors();
 
       const chart = new Chart(canvas, {
         type: "line",
@@ -194,6 +189,20 @@ const { charts, showAll = false } = Astro.props;
       const pool = others.length > 0 ? others : cards;
       const next = pool[Math.floor(Math.random() * pool.length)];
       showCard(next);
+    });
+
+    // Chart.js doesn't watch CSS variables, so an already-rendered chart
+    // keeps its pre-toggle colors until rebuilt. Destroying and recreating
+    // on the same canvas is simpler and more robust here than mutating
+    // Chart.js's nested options objects in place.
+    window.addEventListener("themechange", () => {
+      const ids = Array.from(charts.keys());
+      for (const id of ids) {
+        charts.get(id)?.destroy();
+        charts.delete(id);
+        const card = cards.find((c) => c.dataset.chartId === id);
+        if (card) renderChart(card);
+      }
     });
   }
 </script>

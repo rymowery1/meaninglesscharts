@@ -25,13 +25,34 @@ const chartJsData = {
     <canvas data-chart-canvas aria-label={`Line chart: ${chart.title}, indexed to 100 at ${chart.normalizationBaselineDate}`} role="img"></canvas>
   </div>
   <script type="application/json" is:inline data-chart-json set:html={JSON.stringify(chartJsData)} />
+  <table class="sr-only">
+    <caption>
+      {chart.title}, full data — indexed to 100 at {chart.normalizationBaselineDate}
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">{chart.datasetA.label}</th>
+        <th scope="col">{chart.datasetB.label}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {chart.points.map((p) => (
+        <tr>
+          <td>{p.date}</td>
+          <td>{p.aIndexed}</td>
+          <td>{p.bIndexed}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
   <RevealPanel fakeInsight={chart.fakeInsight} reveal={chart.reveal} />
   <SourcePanel chart={chart} />
 </article>
 
 <style>
   .chart-card {
-    background: white;
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1.25rem;

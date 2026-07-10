@@ -17,11 +17,21 @@ const {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      // Runs synchronously before first paint to avoid a flash of the wrong
+      // theme. A stored explicit choice always wins; otherwise the CSS
+      // `prefers-color-scheme` media query in global.css handles it.
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme === "dark" || storedTheme === "light") {
+        document.documentElement.dataset.theme = storedTheme;
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta property="og:title" content={title === "404" ? "Page not found" : `${title} · Meaningless Charts`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/og/og-image.svg" />
+    <meta name="color-scheme" content="light dark" />
     <title>{title} · Meaningless Charts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,12 +41,33 @@ const {
     />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="site-shell">
       <Header />
-      <main>
+      <main id="main-content">
         <slot />
       </main>
       <Footer />
     </div>
   </body>
 </html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    z-index: 100;
+    background: var(--color-accent);
+    color: white;
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sans-s-size);
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 6px 0;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+</style>

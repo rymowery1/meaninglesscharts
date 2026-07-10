@@ -13,17 +13,69 @@ const NAV_LINKS = [
     <div class="site-tagline">The data is real. The relationship is not.</div>
   </div>
 
-  <details class="nav-menu">
-    <summary class="nav-menu-toggle" aria-label="Menu">
-      <span class="hamburger-icon" aria-hidden="true"></span>
-    </summary>
-    <nav class="nav-menu-panel" aria-label="Primary">
-      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
-    </nav>
-  </details>
+  <div class="site-header-controls">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-toggle-thumb"></span>
+      </span>
+    </button>
+
+    <details class="nav-menu">
+      <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="hamburger-icon" aria-hidden="true"></span>
+      </summary>
+      <nav class="nav-menu-panel" aria-label="Primary">
+        {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+      </nav>
+    </details>
+  </div>
 </header>
 
 <style>
+  .site-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .theme-toggle-track {
+    display: block;
+    width: 2.25rem;
+    height: 1.25rem;
+    border-radius: 999px;
+    background: var(--color-border);
+    position: relative;
+    transition: background 0.15s ease;
+  }
+  .theme-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--color-bg);
+    transition: transform 0.15s ease;
+  }
+  .theme-toggle[aria-pressed="true"] .theme-toggle-track {
+    background: var(--color-accent);
+  }
+  .theme-toggle[aria-pressed="true"] .theme-toggle-thumb {
+    transform: translateX(1rem);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle-track,
+    .theme-toggle-thumb {
+      transition: none;
+    }
+  }
   .nav-menu {
     position: relative;
   }
@@ -89,3 +141,44 @@ const NAV_LINKS = [
     color: var(--color-accent);
   }
 </style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+
+  function currentTheme(): "light" | "dark" {
+    const stored = document.documentElement.dataset.theme;
+    if (stored === "dark" || stored === "light") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function applyState(button: HTMLButtonElement, theme: "light" | "dark") {
+    const isDark = theme === "dark";
+    button.setAttribute("aria-pressed", isDark ? "true" : "false");
+    button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  }
+
+  if (toggle) {
+    applyState(toggle, currentTheme());
+
+    toggle.addEventListener("click", () => {
+      const next: "light" | "dark" = currentTheme() === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("theme", next);
+      applyState(toggle, next);
+      window.dispatchEvent(new Event("themechange"));
+    });
+  }
+
+  // Native <details> has no built-in Escape-to-close behavior. Closing on
+  // Escape and returning focus to the toggle matches the standard disclosure-
+  // menu pattern (ARIA Authoring Practices Guide).
+  const navMenu = document.querySelector<HTMLDetailsElement>(".nav-menu");
+  const navMenuToggle = navMenu?.querySelector<HTMLElement>(".nav-menu-toggle");
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navMenu?.open) {
+      navMenu.open = false;
+      navMenuToggle?.focus();
+    }
+  });
+</script>

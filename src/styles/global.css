@@ -1,7 +1,12 @@
 :root {
   --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-alt: rgba(0, 0, 0, 0.03);
   --color-text: #111111;
-  --color-muted: #7a7a7a;
+  /* #7a7a7a measured ~4.4:1 on white, below the 4.5:1 AA minimum for normal
+     text — this is used at body size (tagline, footer, disclaimers), not
+     just large/decorative text, so it must pass. #6b6b6b measures ~5.3:1. */
+  --color-muted: #6b6b6b;
   --color-border: #d9d9d6;
   --color-accent: #1f5eff;
 
@@ -64,6 +69,42 @@
   --text-serif-l-size: 1.25rem; /* 20px */
   --text-serif-m-size: 1rem; /* 16px */
   --text-serif-s-size: 0.8125rem; /* 13px */
+}
+
+/* Dark palette, in two layers so an explicit choice always wins over the OS
+   setting regardless of source order: the media query covers visitors who
+   haven't chosen (prefers-color-scheme), and [data-theme] (set by the header
+   toggle in Header.astro, persisted to localStorage) overrides it either way.
+   Colors are near-black/near-white rather than pure #000/#fff, and the accent
+   blue is brightened, to keep contrast comfortable on a dark surface. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121212;
+    --color-surface: #1c1c1e;
+    --color-surface-alt: rgba(255, 255, 255, 0.06);
+    --color-text: #f0f0ee;
+    --color-muted: #a8a8a4;
+    --color-border: #3a3a3c;
+    --color-accent: #5b8fff;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #121212;
+  --color-surface: #1c1c1e;
+  --color-surface-alt: rgba(255, 255, 255, 0.06);
+  --color-text: #f0f0ee;
+  --color-muted: #a8a8a4;
+  --color-border: #3a3a3c;
+  --color-accent: #5b8fff;
+}
+:root[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-alt: rgba(0, 0, 0, 0.03);
+  --color-text: #111111;
+  --color-muted: #6b6b6b;
+  --color-border: #d9d9d6;
+  --color-accent: #1f5eff;
 }
 
 * {
@@ -212,4 +253,23 @@ h3 {
   border: 1px dashed var(--color-border);
   padding: 0.75rem 1rem;
   border-radius: 4px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Shared utility for content that should reach assistive tech but never be
+   seen — e.g. live-region announcements, full data tables behind a chart. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
