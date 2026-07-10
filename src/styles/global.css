@@ -1,9 +1,28 @@
 :root {
-  --color-bg: #faf9f6;
-  --color-text: #000000;
-  --color-muted: #6b6b6b;
-  --color-border: #dddad2;
-  --color-accent: #8a3b2e;
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #7a7a7a;
+  --color-border: #d9d9d6;
+  --color-accent: #1f5eff;
+
+  /* Divergent color scale (teal-green -> red). Currently unused by any
+     component — chart lines and DatasetBadge use neutral --color-text /
+     --color-muted instead, since these categories/series aren't performance
+     data. Kept defined in case a future feature genuinely needs a
+     value-movement scale. See docs/design/color-scale.md. */
+  --scale-00: #00876c;
+  --scale-01: #469a72;
+  --scale-02: #6eac7a;
+  --scale-03: #94be85;
+  --scale-04: #b8d092;
+  --scale-05: #dce2a2;
+  --scale-06: #fff4b6;
+  --scale-07: #f9d996;
+  --scale-08: #f4bd7b;
+  --scale-09: #efa066;
+  --scale-10: #e88258;
+  --scale-11: #e06152;
+  --scale-12: #d43d51;
 
   /* Epilogue is the sans/display face; true Baskerville isn't available as a
      webfont, so Libre Baskerville (the open equivalent) is the serif face,

@@ -4,7 +4,7 @@ interface Props {
 }
 const { domain } = Astro.props;
 ---
-<span class="dataset-badge">{domain}</span>
+<span class="dataset-badge" data-domain={domain}>{domain}</span>
 
 <style>
   .dataset-badge {
@@ -14,6 +14,7 @@ const { domain } = Astro.props;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--color-muted);
+    background: transparent;
     border: 1px solid var(--color-border);
     border-radius: 999px;
     padding: 0.15rem 0.6rem;
