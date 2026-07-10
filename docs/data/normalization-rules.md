@@ -13,10 +13,11 @@ A series is **not eligible** for index-to-100 if, within the shared window:
 - the baseline value is negative
 - the series contains any negative value
 - the series crosses zero
+- the baseline is less than 1% of the series' own peak absolute value in the shared window
 
-Reasons: a zero baseline divides by zero. A negative baseline flips the direction of the whole line — a rising series would render as falling. A zero-crossing series has a discontinuity that isn't visible to the reader and silently misrepresents the shape.
+Reasons: a zero baseline divides by zero. A negative baseline flips the direction of the whole line — a rising series would render as falling. A zero-crossing series has a discontinuity that isn't visible to the reader and silently misrepresents the shape. A baseline under 1% of the series' peak inflates the index scale so far (100x or more) that the chart becomes a flat line for most of its range followed by a single distorting spike — mathematically valid, but it hides everything the series actually did. Added 2026-07-10 after `worldbank-mobile-subscriptions-annual`'s 1981 baseline (0.0015 subscriptions per 100 people, near the technology's inception) would have indexed to a ~7,400,000% scale by 2024.
 
-Series known to be at risk: temperature anomalies (negative), net migration (negative), current account balance (crosses zero), earthquake counts in a quiet window (zero), air-quality readings after a sensor outage (zero).
+Series known to be at risk: temperature anomalies (negative), net migration (negative), current account balance (crosses zero), earthquake counts in a quiet window (zero), air-quality readings after a sensor outage (zero), adoption/penetration metrics for a technology whose shared window starts near its invention (baseline too small).
 
 ## What to do when a series is ineligible
 

@@ -13,3 +13,15 @@ Paired 1:1 with `docs/content/fake-insight-templates.md`. Every reveal must make
 ## `usgs-quakes-m5-5-monthly-count` + `wikimedia-enwiki-pageviews-monthly`
 
 > Wikipedia traffic moves with news cycles, search trends, and unrelated internet events. Earthquake counts move with plate tectonics. Any month where both go up is a coincidence, not a pattern — and plenty of months, they don't.
+
+## `nasa-power-temp-annual` + `worldbank-life-expectancy-annual`
+
+> Life expectancy has risen for decades because of vaccines, medicine, sanitation, and falling infant mortality — none of it tied to a temperature reading in one American city. Two lines climbing over the same forty-some years is not evidence they're connected.
+
+## `nasa-power-temp-annual` + `worldbank-unemployment-rate-annual`
+
+> Global unemployment reflects labor markets, demographics, and in 2020, a pandemic — not the temperature in one American city. A slow rise in one line and a slow fall in another, over the same three and a half decades, is a coincidence of timing, not cause.
+
+## `nasa-power-temp-annual` + `worldbank-electric-power-consumption-annual`
+
+> Electricity use has grown with rising incomes, more appliances, and expanding power grids worldwide — not with the weather in one U.S. city. A single location's temperature record and a global consumption trend sit on entirely different scales, shaped by entirely different things.

@@ -8,6 +8,18 @@
     "datasetBId": "worldbank-internet-users-pct-annual"
   },
   {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-life-expectancy-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-unemployment-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-electric-power-consumption-annual"
+  },
+  {
     "datasetAId": "usgs-quakes-m5-5-monthly-count",
     "datasetBId": "wikimedia-enwiki-pageviews-monthly"
   }

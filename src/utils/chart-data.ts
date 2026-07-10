@@ -46,6 +46,27 @@ const CHART_COPY: Record<string, ChartCopy> = {
     reveal:
       "Wikipedia traffic moves with news cycles, search trends, and unrelated internet events. Earthquake counts move with plate tectonics. Any month where both go up is a coincidence, not a pattern — and plenty of months, they don't.",
   },
+  [pairKey("nasa-power-temp-annual", "worldbank-life-expectancy-annual")]: {
+    title: "Global Life Expectancy vs. Washington, D.C. Annual Temperature",
+    fakeInsight:
+      "Since 1981, life expectancy worldwide has climbed year after year right alongside Washington, D.C.'s warming summers — two long, steady lines that seem to be telling the same story.",
+    reveal:
+      "Life expectancy has risen for decades because of vaccines, medicine, sanitation, and falling infant mortality — none of it tied to a temperature reading in one American city. Two lines climbing over the same forty-some years is not evidence they're connected.",
+  },
+  [pairKey("nasa-power-temp-annual", "worldbank-unemployment-rate-annual")]: {
+    title: "Washington, D.C. Annual Temperature vs. Global Unemployment Rate",
+    fakeInsight:
+      "Since 1991, Washington's summers have warmed by a few degrees while the world's unemployment rate has quietly drifted the other way — an inverse relationship tidy enough to build a headline around.",
+    reveal:
+      "Global unemployment reflects labor markets, demographics, and in 2020, a pandemic — not the temperature in one American city. A slow rise in one line and a slow fall in another, over the same three and a half decades, is a coincidence of timing, not cause.",
+  },
+  [pairKey("nasa-power-temp-annual", "worldbank-electric-power-consumption-annual")]: {
+    title: "Washington, D.C. Annual Temperature vs. Global Electric Power Consumption",
+    fakeInsight:
+      "As Washington, D.C.'s yearly average temperature climbed, so did how much electricity the average person on Earth uses each year — two rising lines, thirty years apart in origin but perfectly aligned on the page.",
+    reveal:
+      "Electricity use has grown with rising incomes, more appliances, and expanding power grids worldwide — not with the weather in one U.S. city. A single location's temperature record and a global consumption trend sit on entirely different scales, shaped by entirely different things.",
+  },
 };
 
 function round1(n: number): number {

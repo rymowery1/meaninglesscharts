@@ -16,6 +16,11 @@ Mirrored in `src/data/datasets.json` as `DatasetMeta` entries, with matching ser
 | `usgs-quakes-m5-5-monthly-count` | Global M5.5+ earthquake count | U.S. Geological Survey | physical-events | monthly | magnitude threshold raised from the original M4.5+ idea to keep a single API request under USGS's 20,000-result cap; monthly counts are derived by counting raw catalog events per calendar month — resolved as legitimate (not a forbidden resampling of an existing series, since the catalog has no other native frequency), see decision-log.md |
 | `wikimedia-enwiki-pageviews-monthly` | English Wikipedia total monthly pageviews | Wikimedia Foundation | culture-attention | monthly | project-wide aggregate via the Pageviews API, `NEEDS_VERIFICATION` on exact endpoint |
 | `worldbank-internet-users-pct-annual` | Individuals using the Internet (% of population) | The World Bank | global-indicators | annual | indicator code `IT.NET.USER.ZS`, `NEEDS_VERIFICATION`; same org and domain as `worldbank-population-total-annual`, so it can't pair with it — proposed as a spare |
+| `worldbank-life-expectancy-annual` | Life expectancy at birth, total (years) | The World Bank | global-indicators | annual | indicator code `SP.DYN.LE00.IN`, verified live 2026-07-10 |
+| `worldbank-co2-emissions-per-capita-annual` | CO2 emissions per capita | The World Bank | environment | annual | indicator code `EN.GHG.CO2.PC.CE.AR5` (the legacy `EN.ATM.CO2E.PC` code is archived/deleted — confirmed live), verified 2026-07-10 |
+| `worldbank-unemployment-rate-annual` | Unemployment rate (% of total labor force) | The World Bank | economy | annual | indicator code `SL.UEM.TOTL.ZS`, verified live 2026-07-10 |
+| `worldbank-electric-power-consumption-annual` | Electric power consumption per capita | The World Bank | global-indicators | annual | indicator code `EG.USE.ELEC.KH.PC`, verified live 2026-07-10 (still actively published, despite being widely assumed discontinued) |
+| `worldbank-mobile-subscriptions-annual` | Mobile cellular subscriptions (per 100 people) | The World Bank | global-indicators | annual | indicator code `IT.CEL.SETS.P2`, verified live 2026-07-10; values are ~0 before mobile telephony existed, which excludes it from pairing with any weather-domain partner whose shared window starts that early — see `docs/data/normalization-rules.md`'s baseline-too-small rule |
 
 ## Valid candidate pairings under `docs/data/pairing-rules.md`
 
@@ -33,8 +38,30 @@ Verified by running the actual `checkPairing()` logic (`src/utils/pairings.ts`) 
 
 `worldbank-forest-area-pct-annual` (environment) and `worldbank-agricultural-land-pct-annual` (agriculture) still have no valid partner in this 8-dataset set — kept in the catalog for when a non-World-Bank, non-NASA-POWER source joins (e.g. BLS or OpenAQ).
 
+## Update, 2026-07-10: 5 more World Bank indicators added
+
+Expanded from 8 to 13 datasets, all still from the keyless World Bank Indicators API (see
+`docs/data/approved-sources.md` — a Kaggle key the user offered was declined, since Kaggle is on
+CLAUDE.md's Avoid list; a plane-crash-fatality database was also declined, since scraping it would
+violate the no-scrapers rule and pairing fatality data risks the "don't make sensitive human
+outcomes the punchline" rule). All 5 new indicator codes were verified against the live API before
+being added — one initially-assumed code (`EN.ATM.CO2E.PC` for CO2 emissions) turned out to be
+archived; `EN.GHG.CO2.PC.CE.AR5` is the live replacement.
+
+`npm run generate:pairings` found 3 new valid pairings (all partnered with `nasa-power-temp-annual`,
+since every new dataset is annual World Bank data and can't pair with another World Bank dataset —
+same-source-organization is blocked): life expectancy, unemployment rate, and electric power
+consumption. `worldbank-co2-emissions-per-capita-annual` (environment domain) has no valid partner
+yet — `environment` is blocked from pairing with `weather`, its only same-frequency non-World-Bank
+option. `worldbank-mobile-subscriptions-annual` structurally could pair with `nasa-power-temp-annual`
+but is rejected by the new baseline-too-small normalization rule (see `normalization-rules.md`) —
+its 1981 value (0.0015 subscriptions/100 people) would blow the index scale up ~7,400,000% by 2024.
+
+Now 6 total pairings in `src/data/pairings.json` (up from 3), all with hand-written chart copy —
+see `docs/content/chart-copy.md`, `fake-insight-templates.md`, `reveal-templates.md`.
+
 ## Status
 
 Resolved — this catalog is implemented, not just proposed. Remaining open items (deploy target,
-whether to register BLS/OpenAQ keys to expand past 3 pairings) are tracked in
+whether to register BLS/OpenAQ keys to expand pairing variety further) are tracked in
 `docs/source-of-truth/open-questions.md`, not here.

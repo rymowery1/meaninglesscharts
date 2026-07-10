@@ -33,6 +33,11 @@ const INDICATORS: IndicatorConfig[] = [
   { datasetId: "worldbank-forest-area-pct-annual", indicatorCode: "AG.LND.FRST.ZS", unit: "% of land area" },
   { datasetId: "worldbank-agricultural-land-pct-annual", indicatorCode: "AG.LND.AGRI.ZS", unit: "% of land area" },
   { datasetId: "worldbank-internet-users-pct-annual", indicatorCode: "IT.NET.USER.ZS", unit: "% of population" },
+  { datasetId: "worldbank-life-expectancy-annual", indicatorCode: "SP.DYN.LE00.IN", unit: "years" },
+  { datasetId: "worldbank-co2-emissions-per-capita-annual", indicatorCode: "EN.GHG.CO2.PC.CE.AR5", unit: "t CO2e per capita" },
+  { datasetId: "worldbank-unemployment-rate-annual", indicatorCode: "SL.UEM.TOTL.ZS", unit: "% of total labor force" },
+  { datasetId: "worldbank-electric-power-consumption-annual", indicatorCode: "EG.USE.ELEC.KH.PC", unit: "kWh per capita" },
+  { datasetId: "worldbank-mobile-subscriptions-annual", indicatorCode: "IT.CEL.SETS.P2", unit: "subscriptions per 100 people" },
 ];
 
 type WorldBankMetaEntry = {

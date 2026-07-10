@@ -45,6 +45,17 @@ describe("checkNormalizationEligibility", () => {
   it("accepts an all-positive series", () => {
     expect(checkNormalizationEligibility([10, 20, 5])).toEqual({ eligible: true });
   });
+
+  it("rejects a baseline under 1% of the series' peak", () => {
+    expect(checkNormalizationEligibility([0.001, 50, 100])).toEqual({
+      eligible: false,
+      reason: "baseline-too-small",
+    });
+  });
+
+  it("accepts a baseline right at the 1% threshold boundary and above", () => {
+    expect(checkNormalizationEligibility([1, 50, 100]).eligible).toBe(true);
+  });
 });
 
 describe("normalizeToIndex100", () => {

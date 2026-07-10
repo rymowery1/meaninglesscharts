@@ -10,7 +10,17 @@ export type SharedWindow = {
 
 export type EligibilityResult =
   | { eligible: true }
-  | { eligible: false; reason: "zero-baseline" | "negative-baseline" | "negative-value" | "crosses-zero" };
+  | {
+      eligible: false;
+      reason: "zero-baseline" | "negative-baseline" | "negative-value" | "crosses-zero" | "baseline-too-small";
+    };
+
+// A baseline under this fraction of the series' own peak is treated as
+// "too small" — indexing from it would inflate the scale so far that the
+// chart is a flat line for most of its range followed by a single distorting
+// spike, effectively hiding everything else in the series. See
+// docs/data/normalization-rules.md.
+const MIN_BASELINE_FRACTION_OF_PEAK = 0.01;
 
 /**
  * Intersects two series by date. Gaps are represented by the absence of a
@@ -59,6 +69,11 @@ export function checkNormalizationEligibility(values: number[]): EligibilityResu
   const max = Math.max(...values);
   if (min < 0 && max > 0) {
     return { eligible: false, reason: "crosses-zero" };
+  }
+
+  const peak = Math.max(...values.map(Math.abs));
+  if (peak > 0 && baseline / peak < MIN_BASELINE_FRACTION_OF_PEAK) {
+    return { eligible: false, reason: "baseline-too-small" };
   }
 
   return { eligible: true };
