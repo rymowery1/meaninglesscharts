@@ -25,48 +25,54 @@ const first = chart.points[0];
 const last = chart.points[chart.points.length - 1];
 ---
 <section class="source-panel" aria-label="Chart sources and methodology">
-  <h3>Sources</h3>
-  <div class="source-panel-grid">
-    <div class="source-entry">
-      <DatasetBadge domain={chart.datasetA.domain} />
-      <p class="source-label">{chart.datasetA.label}</p>
-      <dl>
-        <dt>Source</dt>
-        <dd><a href={chart.datasetA.sourceUrl} rel="noopener noreferrer">{chart.datasetA.sourceOrganization}</a></dd>
-        <dt>Geography</dt>
-        <dd>{chart.datasetA.geography}</dd>
-        <dt>Unit</dt>
-        <dd>{chart.datasetA.unit}</dd>
-        <dt>Full date range</dt>
-        <dd>{fmtDate(chart.datasetA.dateRange.start as string)} – {fmtDate(chart.datasetA.dateRange.end as string)}</dd>
-        <dt>Baseline value ({fmtDate(chart.normalizationBaselineDate)})</dt>
-        <dd>{fmtNum(first.aOriginal)} {chart.datasetA.unit}</dd>
-      </dl>
+  <details>
+    <summary>
+      <span class="source-panel-title">Sources</span>
+      <span class="source-summary-badges">
+        <DatasetBadge domain={chart.datasetA.domain} />
+        <DatasetBadge domain={chart.datasetB.domain} />
+      </span>
+    </summary>
+    <div class="source-panel-grid">
+      <div class="source-entry">
+        <p class="source-label">{chart.datasetA.label}</p>
+        <dl>
+          <dt>Source</dt>
+          <dd><a href={chart.datasetA.sourceUrl} rel="noopener noreferrer">{chart.datasetA.sourceOrganization}</a></dd>
+          <dt>Geography</dt>
+          <dd>{chart.datasetA.geography}</dd>
+          <dt>Unit</dt>
+          <dd>{chart.datasetA.unit}</dd>
+          <dt>Full date range</dt>
+          <dd>{fmtDate(chart.datasetA.dateRange.start as string)} – {fmtDate(chart.datasetA.dateRange.end as string)}</dd>
+          <dt>Baseline value ({fmtDate(chart.normalizationBaselineDate)})</dt>
+          <dd>{fmtNum(first.aOriginal)} {chart.datasetA.unit}</dd>
+        </dl>
+      </div>
+      <div class="source-entry">
+        <p class="source-label">{chart.datasetB.label}</p>
+        <dl>
+          <dt>Source</dt>
+          <dd><a href={chart.datasetB.sourceUrl} rel="noopener noreferrer">{chart.datasetB.sourceOrganization}</a></dd>
+          <dt>Geography</dt>
+          <dd>{chart.datasetB.geography}</dd>
+          <dt>Unit</dt>
+          <dd>{chart.datasetB.unit}</dd>
+          <dt>Full date range</dt>
+          <dd>{fmtDate(chart.datasetB.dateRange.start as string)} – {fmtDate(chart.datasetB.dateRange.end as string)}</dd>
+          <dt>Baseline value ({fmtDate(chart.normalizationBaselineDate)})</dt>
+          <dd>{fmtNum(first.bOriginal)} {chart.datasetB.unit}</dd>
+        </dl>
+      </div>
     </div>
-    <div class="source-entry">
-      <DatasetBadge domain={chart.datasetB.domain} />
-      <p class="source-label">{chart.datasetB.label}</p>
-      <dl>
-        <dt>Source</dt>
-        <dd><a href={chart.datasetB.sourceUrl} rel="noopener noreferrer">{chart.datasetB.sourceOrganization}</a></dd>
-        <dt>Geography</dt>
-        <dd>{chart.datasetB.geography}</dd>
-        <dt>Unit</dt>
-        <dd>{chart.datasetB.unit}</dd>
-        <dt>Full date range</dt>
-        <dd>{fmtDate(chart.datasetB.dateRange.start as string)} – {fmtDate(chart.datasetB.dateRange.end as string)}</dd>
-        <dt>Baseline value ({fmtDate(chart.normalizationBaselineDate)})</dt>
-        <dd>{fmtNum(first.bOriginal)} {chart.datasetB.unit}</dd>
-      </dl>
-    </div>
-  </div>
 
-  <dl class="chart-meta">
-    <dt>Normalization</dt>
-    <dd>{chart.normalization}, at {fmtDate(chart.normalizationBaselineDate)}</dd>
-    <dt>Shared window shown</dt>
-    <dd>{fmtDate(first.date)} – {fmtDate(last.date)} ({chart.points.length} points, {chart.datasetA.frequency})</dd>
-  </dl>
+    <dl class="chart-meta">
+      <dt>Normalization</dt>
+      <dd>{chart.normalization}, at {fmtDate(chart.normalizationBaselineDate)}</dd>
+      <dt>Shared window shown</dt>
+      <dd>{fmtDate(first.date)} – {fmtDate(last.date)} ({chart.points.length} points, {chart.datasetA.frequency})</dd>
+    </dl>
+  </details>
 
   <p class="disclaimer">{chart.disclaimer}</p>
 </section>
@@ -79,13 +85,29 @@ const last = chart.points[chart.points.length - 1];
     padding-top: 1rem;
     margin-top: 1.5rem;
   }
-  .source-panel h3 {
-    margin: 0 0 0.75rem;
+  .source-panel summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .source-panel-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-label-size);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .source-summary-badges {
+    display: flex;
+    gap: 0.4rem;
   }
   .source-panel-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
+    margin-top: 1rem;
   }
   @media (min-width: 40rem) {
     .source-panel-grid {
@@ -96,7 +118,7 @@ const last = chart.points[chart.points.length - 1];
     font-family: var(--font-serif);
     font-size: var(--text-serif-m-size);
     font-weight: 700;
-    margin: 0.4rem 0 0.5rem;
+    margin: 0 0 0.5rem;
   }
   dl {
     margin: 0;
