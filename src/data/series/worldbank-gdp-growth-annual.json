@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=1000",
   "unit": "annual % change",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T08:20:37.763Z",
+  "fetchedAt": "2026-07-10T19:24:50.775Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

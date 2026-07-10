@@ -80,6 +80,16 @@ function round1(n: number): number {
   return Math.round(n * 10) / 10;
 }
 
+/**
+ * Whether a pairing has hand-written copy in CHART_COPY. pairings.json holds
+ * every structurally-valid *candidate* pairing (see generate-sample-pairings.ts);
+ * only the ones with copy are actually rendered as charts. A candidate without
+ * copy is skipped by buildAllCharts, not shown with fabricated copy.
+ */
+export function hasChartCopy(aId: string, bId: string): boolean {
+  return CHART_COPY[pairKey(aId, bId)] !== undefined;
+}
+
 export function loadDatasets(rootDir: string): DatasetMeta[] {
   return JSON.parse(readFileSync(`${rootDir}src/data/datasets.json`, "utf-8")) as DatasetMeta[];
 }
@@ -153,7 +163,9 @@ export function buildAllCharts(rootDir: string): GeneratedChart[] {
   const seriesByDatasetId = loadSeriesByDatasetId(rootDir);
   const pairings = loadPairings(rootDir);
 
-  return pairings.map(({ datasetAId, datasetBId }) => {
+  const charts: GeneratedChart[] = [];
+  let skipped = 0;
+  for (const { datasetAId, datasetBId } of pairings) {
     const a = datasetById.get(datasetAId);
     const b = datasetById.get(datasetBId);
     const seriesA = seriesByDatasetId.get(datasetAId);
@@ -161,6 +173,18 @@ export function buildAllCharts(rootDir: string): GeneratedChart[] {
     if (!a || !b || !seriesA || !seriesB) {
       throw new Error(`Pairing references missing dataset or series: ${datasetAId} + ${datasetBId}`);
     }
-    return buildGeneratedChart(a, b, seriesA, seriesB);
-  });
+    // Candidate pairings without hand-written copy are valid data but aren't
+    // rendered — skip them rather than throwing or inventing copy.
+    if (!hasChartCopy(datasetAId, datasetBId)) {
+      skipped++;
+      continue;
+    }
+    charts.push(buildGeneratedChart(a, b, seriesA, seriesB));
+  }
+  if (skipped > 0) {
+    console.warn(
+      `buildAllCharts: rendered ${charts.length} chart(s); skipped ${skipped} candidate pairing(s) without copy (add entries to CHART_COPY in src/utils/chart-data.ts to render them).`,
+    );
+  }
+  return charts;
 }

@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/EG.FEC.RNEW.ZS?format=json&per_page=1000",
   "unit": "% of total final energy consumption",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T08:20:39.903Z",
+  "fetchedAt": "2026-07-10T19:24:52.331Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

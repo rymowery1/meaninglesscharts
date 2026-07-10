@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/IT.NET.USER.ZS?format=json&per_page=1000",
   "unit": "% of population",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T08:20:38.461Z",
+  "fetchedAt": "2026-07-10T19:24:51.346Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

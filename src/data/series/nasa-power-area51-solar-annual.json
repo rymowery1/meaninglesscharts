@@ -1,0 +1,180 @@
+{
+  "datasetId": "nasa-power-area51-solar-annual",
+  "sourceOrganization": "NASA POWER",
+  "sourceUrl": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=WS10M,RH2M,ALLSKY_SFC_SW_DWN&community=RE&longitude=-115.793&latitude=37.2431&start=1981&end=2025&format=JSON",
+  "unit": "kW-hr/m^2/day",
+  "frequency": "annual",
+  "fetchedAt": "2026-07-10T19:13:15.682Z",
+  "fetchedBy": "scripts/fetch-data/nasa-power.ts",
+  "provenance": "script",
+  "points": [
+    {
+      "date": "1984-01-01",
+      "value": 5.0566
+    },
+    {
+      "date": "1985-01-01",
+      "value": 5.3198
+    },
+    {
+      "date": "1986-01-01",
+      "value": 5.2906
+    },
+    {
+      "date": "1987-01-01",
+      "value": 5.172
+    },
+    {
+      "date": "1988-01-01",
+      "value": 5.0856
+    },
+    {
+      "date": "1989-01-01",
+      "value": 5.4718
+    },
+    {
+      "date": "1990-01-01",
+      "value": 5.401
+    },
+    {
+      "date": "1991-01-01",
+      "value": 5.2337
+    },
+    {
+      "date": "1992-01-01",
+      "value": 5.1677
+    },
+    {
+      "date": "1993-01-01",
+      "value": 5.3098
+    },
+    {
+      "date": "1994-01-01",
+      "value": 5.1703
+    },
+    {
+      "date": "1995-01-01",
+      "value": 5.1797
+    },
+    {
+      "date": "1996-01-01",
+      "value": 5.4574
+    },
+    {
+      "date": "1997-01-01",
+      "value": 5.5258
+    },
+    {
+      "date": "1998-01-01",
+      "value": 5.382
+    },
+    {
+      "date": "1999-01-01",
+      "value": 5.5015
+    },
+    {
+      "date": "2000-01-01",
+      "value": 5.5032
+    },
+    {
+      "date": "2001-01-01",
+      "value": 5.4931
+    },
+    {
+      "date": "2002-01-01",
+      "value": 5.6633
+    },
+    {
+      "date": "2003-01-01",
+      "value": 5.4336
+    },
+    {
+      "date": "2004-01-01",
+      "value": 5.4948
+    },
+    {
+      "date": "2005-01-01",
+      "value": 5.3542
+    },
+    {
+      "date": "2006-01-01",
+      "value": 5.4434
+    },
+    {
+      "date": "2007-01-01",
+      "value": 5.5925
+    },
+    {
+      "date": "2008-01-01",
+      "value": 5.622
+    },
+    {
+      "date": "2009-01-01",
+      "value": 5.4156
+    },
+    {
+      "date": "2010-01-01",
+      "value": 5.4377
+    },
+    {
+      "date": "2011-01-01",
+      "value": 5.5409
+    },
+    {
+      "date": "2012-01-01",
+      "value": 5.5553
+    },
+    {
+      "date": "2013-01-01",
+      "value": 5.5531
+    },
+    {
+      "date": "2014-01-01",
+      "value": 5.5152
+    },
+    {
+      "date": "2015-01-01",
+      "value": 5.3782
+    },
+    {
+      "date": "2016-01-01",
+      "value": 5.4905
+    },
+    {
+      "date": "2017-01-01",
+      "value": 5.4686
+    },
+    {
+      "date": "2018-01-01",
+      "value": 5.5082
+    },
+    {
+      "date": "2019-01-01",
+      "value": 5.3892
+    },
+    {
+      "date": "2020-01-01",
+      "value": 5.6803
+    },
+    {
+      "date": "2021-01-01",
+      "value": 5.4557
+    },
+    {
+      "date": "2022-01-01",
+      "value": 5.5649
+    },
+    {
+      "date": "2023-01-01",
+      "value": 5.2654
+    },
+    {
+      "date": "2024-01-01",
+      "value": 5.4494
+    },
+    {
+      "date": "2025-01-01",
+      "value": 5.4336
+    }
+  ]
+}

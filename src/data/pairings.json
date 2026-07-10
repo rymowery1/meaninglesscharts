@@ -4,6 +4,110 @@
     "datasetBId": "nasa-power-temp-annual"
   },
   {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "nasa-power-area51-windspeed-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "nasa-power-area51-humidity-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "nasa-power-area51-solar-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-population-total-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-forest-area-pct-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-agricultural-land-pct-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
     "datasetAId": "nasa-power-temp-annual",
     "datasetBId": "worldbank-internet-users-pct-annual"
   },
@@ -24,7 +128,863 @@
     "datasetBId": "worldbank-inflation-annual"
   },
   {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-tourism-arrivals-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-journal-articles-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-fixed-telephone-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-air-passengers-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-fertility-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-military-expenditure-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "worldbank-birth-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "nasa-power-temp-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
     "datasetAId": "usgs-quakes-m5-5-monthly-count",
     "datasetBId": "wikimedia-enwiki-pageviews-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-nicolas-cage-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-loch-ness-monster-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-area-51-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-godzilla-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-bermuda-triangle-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-ouija-monthly"
+  },
+  {
+    "datasetAId": "usgs-quakes-m5-5-monthly-count",
+    "datasetBId": "wikimedia-pageviews-time-travel-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-enwiki-pageviews-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-enwiki-pageviews-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-enwiki-pageviews-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-enwiki-pageviews-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-enwiki-pageviews-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "nasa-power-area51-windspeed-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "nasa-power-area51-humidity-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "nasa-power-area51-solar-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-internet-users-pct-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "nasa-power-area51-windspeed-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "nasa-power-area51-humidity-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "nasa-power-area51-solar-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-life-expectancy-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-co2-emissions-per-capita-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-unemployment-rate-annual",
+    "datasetBId": "nasa-power-area51-windspeed-annual"
+  },
+  {
+    "datasetAId": "worldbank-unemployment-rate-annual",
+    "datasetBId": "nasa-power-area51-humidity-annual"
+  },
+  {
+    "datasetAId": "worldbank-unemployment-rate-annual",
+    "datasetBId": "nasa-power-area51-solar-annual"
+  },
+  {
+    "datasetAId": "worldbank-unemployment-rate-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "nasa-power-area51-windspeed-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "nasa-power-area51-humidity-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "nasa-power-area51-solar-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-electric-power-consumption-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-inflation-annual",
+    "datasetBId": "nasa-power-area51-windspeed-annual"
+  },
+  {
+    "datasetAId": "worldbank-inflation-annual",
+    "datasetBId": "nasa-power-area51-humidity-annual"
+  },
+  {
+    "datasetAId": "worldbank-inflation-annual",
+    "datasetBId": "nasa-power-area51-solar-annual"
+  },
+  {
+    "datasetAId": "worldbank-inflation-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-renewable-energy-pct-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-cereal-yield-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-nicolas-cage-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-nicolas-cage-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-nicolas-cage-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-nicolas-cage-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-nicolas-cage-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-loch-ness-monster-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-loch-ness-monster-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-loch-ness-monster-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-loch-ness-monster-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-loch-ness-monster-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-area-51-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-area-51-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-area-51-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-area-51-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-area-51-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-godzilla-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-godzilla-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-godzilla-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-godzilla-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-godzilla-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-bermuda-triangle-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-bermuda-triangle-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-bermuda-triangle-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-bermuda-triangle-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-bermuda-triangle-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-ouija-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-ouija-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-ouija-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-ouija-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-ouija-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-time-travel-monthly",
+    "datasetBId": "nasa-power-area51-windspeed-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-time-travel-monthly",
+    "datasetBId": "nasa-power-area51-humidity-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-time-travel-monthly",
+    "datasetBId": "nasa-power-area51-solar-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-time-travel-monthly",
+    "datasetBId": "noaa-co2-mauna-loa-monthly"
+  },
+  {
+    "datasetAId": "wikimedia-pageviews-time-travel-monthly",
+    "datasetBId": "silso-sunspots-monthly"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-tourism-arrivals-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-journal-articles-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-fixed-telephone-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-air-passengers-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-fertility-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-military-expenditure-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "worldbank-birth-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-windspeed-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-tourism-arrivals-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-journal-articles-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-fixed-telephone-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-air-passengers-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-fertility-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-military-expenditure-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "worldbank-birth-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-humidity-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-tourism-arrivals-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-journal-articles-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-fixed-telephone-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-air-passengers-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-fertility-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-military-expenditure-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "worldbank-birth-rate-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "nasa-power-area51-solar-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-tourism-arrivals-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-email-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-journal-articles-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-fixed-telephone-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-air-passengers-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-fertility-rate-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "worldbank-military-expenditure-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "noaa-co2-mauna-loa-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "worldbank-birth-rate-annual",
+    "datasetBId": "ngrams-word-existential-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-moist-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-awesome-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-groovy-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-dude-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-apocalypse-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-spaghetti-annual"
+  },
+  {
+    "datasetAId": "noaa-co2-mauna-loa-annual",
+    "datasetBId": "ngrams-word-existential-annual"
   }
 ]

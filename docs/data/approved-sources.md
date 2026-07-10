@@ -54,6 +54,89 @@ Status values used below follow `DatasetVerificationStatus`: `approved` (source 
 - **License/reuse:** CC0 (public domain) specifically for Analytics datasets, confirmed via https://dumps.wikimedia.org/legal.html on 2026-07-09.
 - **Status:** approved
 
+## Keyless — added 2026-07-10 (funny-first expansion, Batch B: new source organizations)
+
+These were added after the original four to break the structural pairing ceiling (see
+`dataset-catalog.md`): more source organizations = more legal pairings, and genuinely non-typical series.
+
+### NOAA Global Monitoring Laboratory — Mauna Loa CO₂
+- **Organization:** NOAA Global Monitoring Laboratory (GML); historical 1958–74 data from Scripps (C.D. Keeling)
+- **Type:** government
+- **Base URL:** https://gml.noaa.gov/webdata/ccgg/trends/co2/ (plain CSV: `co2_mm_mlo.csv`, `co2_annmean_mlo.csv`)
+- **Access:** public download, no key required — verified live 2026-07-10 (parsed successfully)
+- **Cost:** free
+- **Coverage:** the Keeling curve — monthly mean CO₂ from 1958, annual mean from 1959, in ppm. Strictly positive.
+- **Bias risk:** low — single well-characterized observatory, the canonical global reference series.
+- **License/reuse:** U.S. federal data, made freely available; NOAA requests citation of NOAA/GML (Xin Lan)
+  and Scripps (C.D. Keeling) for the early portion. Terms confirmed in the CSV header + gml.noaa.gov, 2026-07-10.
+- **Status:** approved
+
+### WDC-SILSO, Royal Observatory of Belgium — sunspot numbers
+- **Organization:** WDC-SILSO, Royal Observatory of Belgium (Brussels)
+- **Type:** academic / government observatory
+- **Base URL:** https://www.sidc.be/SILSO/DATA/ (semicolon CSV: `SN_m_tot_V2.0.csv`)
+- **Access:** public download, no key required — verified live 2026-07-10 (parsed successfully)
+- **Cost:** free
+- **Coverage:** monthly mean total sunspot number (v2.0), continuous from 1749. Value 0.0 is a real deep-minimum
+  reading; −1 marks missing. A long window that includes a deep solar minimum can have a baseline near 0, which
+  can trip the normalization eligibility check — expected, handled by rejecting that pairing.
+- **Bias risk:** low-medium — historical reconstruction; early centuries less certain than the modern record.
+- **License/reuse:** **CC BY-NC 4.0 (NonCommercial)** — confirmed via sidc.be 2026-07-10. More restrictive than the
+  catalog's other sources; usable for this non-commercial project but **NEEDS_USER_DECISION** before launch if the
+  site is ever monetized. Required credit: "Source: WDC-SILSO, Royal Observatory of Belgium, Brussels".
+- **Status:** approved (data), license flagged for user decision — kept `launchReady: false` until confirmed.
+
+### Google Books Ngram Viewer — word frequency
+- **Organization:** Google Books Ngram Viewer
+- **Type:** open-data (Google)
+- **Base URL:** https://books.google.com/ngrams/json (the JSON endpoint the public viewer uses)
+- **Access:** public JSON endpoint, no key required — verified live 2026-07-10 (parsed successfully). NOTE:
+  this endpoint is **not a formally documented API**; it powers the public viewer and could change without
+  notice. The fetcher fails loudly (asserts one value per year) rather than writing a misaligned series.
+- **Cost:** free
+- **Coverage:** yearly relative frequency of a word/phrase across the Google Books corpus. `en-2019` corpus
+  runs 1800→2019 (220 annual points at `smoothing=0`). Values are tiny positive proportions.
+- **Bias risk:** medium — reflects the changing composition of digitized books and OCR quality, not spoken
+  usage; a word's frequency can be distorted by scanning artifacts, especially pre-1900.
+- **License/reuse:** the underlying Ngram datasets are released CC BY 3.0 by Google. Credit "Google Books
+  Ngram Viewer". Confirmed via https://books.google.com/ngrams/info (checked 2026-07-10).
+- **Status:** approved (undocumented-endpoint caveat noted above)
+
+## Manual-download sources (Batch 4 — user supplies the file, converter validates)
+
+These have no clean free API. The user downloads/compiles a file into `data-import/`; a converter in
+`scripts/fetch-data/` writes the series with `provenance: "manual-download"`. See `data-import/README.md`.
+
+### Apple Inc. — iPhone unit sales (SEC EDGAR 10-K filings)
+- **Organization:** Apple Inc. (Form 10-K, via SEC EDGAR)
+- **Type:** open-data (public company filings)
+- **Base URL:** https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193&type=10-K
+- **Access:** manual-cache — no free units API exists; numbers are compiled by the user from the filings.
+- **Cost:** free
+- **Coverage:** annual iPhone units sold, FY2007–FY2018 only (Apple stopped disclosing unit sales after
+  FY2018). Apple's fiscal year ends late September, so a fiscal year ≠ the calendar year — disclosed.
+- **Bias risk:** low — the company's own audited figures; but single-company commercial data, and the
+  series is short and ends in 2018.
+- **License/reuse:** factual financial figures disclosed in SEC filings are not copyrightable; cite
+  "Apple Inc. Form 10-K (SEC EDGAR)". Public.
+- **Status:** approved (manual-download; each value must cite the 10-K it came from)
+
+### RIAA — U.S. Sales Database (recorded-music revenue by format)
+- **Organization:** Recording Industry Association of America (RIAA)
+- **Type:** nonprofit / industry association
+- **Base URL:** https://www.riaa.com/u-s-sales-database/
+- **Access:** manual download (interactive tool export); no documented API — `NEEDS_VERIFICATION` that a
+  clean CSV export exists (checked 2026-07-10; page is JS-driven and directs data questions to
+  research@riaa.com).
+- **Cost:** free to view
+- **Coverage:** U.S. recorded-music revenue by format (LP/EP, vinyl single, cassette, CD, downloads,
+  streaming subscriptions, etc.), annual, ~1973→present, nominal and inflation-adjusted.
+- **Bias risk:** low-medium — U.S.-only, wholesale/estimated retail value; format definitions change over time.
+- **License/reuse:** **NEEDS_VERIFICATION** — reuse terms are not clearly stated (site directs to
+  research@riaa.com). Treat as unconfirmed; datasets stay `launchReady:false` until the license is
+  confirmed, same handling as SILSO's non-commercial flag.
+- **Status:** proposed (data usable once downloaded; **license gate** before launch)
+
 ## Keyed priority (defer until the keyless four are working end to end)
 
 ### U.S. Bureau of Labor Statistics (BLS) Public Data API

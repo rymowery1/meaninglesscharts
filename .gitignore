@@ -23,3 +23,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# manual-download raw inputs (unconfirmed license / bulk source data);
+# keep the README and templates, ignore the actual filled-in data files
+data-import/*.csv
+!data-import/*.template.csv

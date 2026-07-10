@@ -41,6 +41,16 @@ const INDICATORS: IndicatorConfig[] = [
   { datasetId: "worldbank-inflation-annual", indicatorCode: "FP.CPI.TOTL.ZG", unit: "annual % change in consumer prices" },
   { datasetId: "worldbank-renewable-energy-pct-annual", indicatorCode: "EG.FEC.RNEW.ZS", unit: "% of total final energy consumption" },
   { datasetId: "worldbank-cereal-yield-annual", indicatorCode: "AG.YLD.CREL.KG", unit: "kg per hectare" },
+  // Batch 2 (funny-first expansion) — indicator codes verified live against the
+  // API on 2026-07-10 before being added here (ST.INT.ARVL reports only through
+  // 2019; IP.TMK.TOTL was checked and rejected as archived/deleted).
+  { datasetId: "worldbank-tourism-arrivals-annual", indicatorCode: "ST.INT.ARVL", unit: "number of arrivals" },
+  { datasetId: "worldbank-journal-articles-annual", indicatorCode: "IP.JRN.ARTC.SC", unit: "number of articles" },
+  { datasetId: "worldbank-fixed-telephone-annual", indicatorCode: "IT.MLT.MAIN.P2", unit: "subscriptions per 100 people" },
+  { datasetId: "worldbank-air-passengers-annual", indicatorCode: "IS.AIR.PSGR", unit: "passengers carried" },
+  { datasetId: "worldbank-fertility-rate-annual", indicatorCode: "SP.DYN.TFRT.IN", unit: "births per woman" },
+  { datasetId: "worldbank-military-expenditure-annual", indicatorCode: "MS.MIL.XPND.GD.ZS", unit: "% of GDP" },
+  { datasetId: "worldbank-birth-rate-annual", indicatorCode: "SP.DYN.CBRT.IN", unit: "births per 1,000 people" },
 ];
 
 type WorldBankMetaEntry = {

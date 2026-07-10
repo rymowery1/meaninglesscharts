@@ -4,7 +4,7 @@
   "sourceUrl": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=RE&longitude=-77.0369&latitude=38.9072&start=1981&end=2025&format=JSON",
   "unit": "°C",
   "frequency": "monthly",
-  "fetchedAt": "2026-07-10T08:20:42.070Z",
+  "fetchedAt": "2026-07-10T19:13:14.959Z",
   "fetchedBy": "scripts/fetch-data/nasa-power.ts",
   "provenance": "script",
   "points": [

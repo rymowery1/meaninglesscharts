@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/FP.CPI.TOTL.ZG?format=json&per_page=1000",
   "unit": "annual % change in consumer prices",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T08:20:39.403Z",
+  "fetchedAt": "2026-07-10T19:24:52.208Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

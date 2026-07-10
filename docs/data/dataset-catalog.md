@@ -91,6 +91,132 @@ if it's `economy`, `global-indicators`, or `culture-attention` domain — adding
 
 Now 7 total pairings, 17 datasets.
 
+## Update, 2026-07-10 (continued): Batch 1 of the "funny-first" expansion — 14 datasets staged
+
+Goal shift (see `docs/plans/`): expand aggressively toward **unique / funny / non-typical** series,
+across all source tiers, while quietly favouring positive-valued series and under-used domains so
+pairing count also grows. This batch stays inside the two keyless sources we already use, so it needs
+no new source approval — it just mines them harder.
+
+**Staged (not yet launch-ready).** All 14 are `verificationStatus: "needs-verification"`,
+`launchReady: false`, `fetchedAt: NEEDS_SOURCE`, `dateRange: NEEDS_SOURCE` — honest placeholders until
+the user runs the fetchers and the series files exist. `npm run validate:data` passes (non-launch-ready
+datasets are allowed to be incomplete). Nothing is paired or shown on the site until each is verified
+and flipped to `approved` / `launchReady: true`.
+
+- **8 × per-article English Wikipedia pageviews** (Wikimedia, monthly, `culture-attention`) — the
+  comedic core. `wikimedia-pageviews-{bigfoot,nicolas-cage,loch-ness-monster,area-51,godzilla,
+  bermuda-triangle,ouija,time-travel}-monthly`. `scripts/fetch-data/wikimedia.ts` was extended to fetch
+  the per-article endpoint alongside the existing project-wide aggregate (`run npm run fetch:wikimedia`).
+  Same-org block means these can't pair with each other — each can only pair with a different-org
+  monthly dataset, i.e. `usgs-quakes-m5-5-monthly-count` (physical-events, not blocked). Expected: up
+  to 8 new pairings ("Bigfoot pageviews vs. global earthquakes").
+- **6 × NASA POWER at Area 51** (NASA POWER, `weather`) — `nasa-power-area51-{windspeed,humidity,solar}-
+  {annual,monthly}`. `scripts/fetch-data/nasa-power.ts` was generalized to multiple point-requests/
+  parameters; the original Washington D.C. temperature datasets are unchanged. Unlike temperature (which
+  crosses 0°C and is normalization-ineligible), wind speed / humidity / irradiance are strictly
+  **positive**, so they ARE normalization-eligible and — being `weather`, which is not blocked from
+  `economy`/`global-indicators` — the **annual** ones can pair with World Bank economy/global-indicators
+  annual series, multiplying pairings beyond what the single temp dataset allowed.
+
+Verification path when the user runs the fetchers: `npm run validate:data` → `npm run generate:pairings`
+→ `npm run validate:pairings`, then hand-write chart copy for each new pairing and flip the metadata to
+`approved` / `launchReady: true`.
+
+**Batch 1 outcome (fetched + promoted 2026-07-10):** 13 of the 14 landed and are now `approved` /
+`launchReady: true`. "Bigfoot" was **dropped** — the Wikimedia per-article endpoint returns a stable
+(negative-cached) 404 for its current-month end-boundary URL even though the article has data, so it
+can't be fetched reliably; removed from both `wikimedia.ts` and the catalog. All 13 new series are
+strictly positive (normalization-eligible). Datasets: 17 → 30.
+
+## Update, 2026-07-10 (Batch 2): 7 more World Bank indicators (funny-first) — 30 → 37
+
+User priority is **expanding data options**, not pairing/copy, so this batch adds catalog breadth via
+the proven keyless World Bank fetcher (just new config rows in `scripts/fetch-data/worldbank.ts`). All 7
+indicator codes were **verified live against the API on 2026-07-10 before adding** (an 8th candidate,
+`IP.TMK.TOTL` trademark applications, was checked and rejected as archived/deleted — same failure mode
+as the earlier `EN.ATM.CO2E.PC`):
+
+- `worldbank-tourism-arrivals-annual` (`ST.INT.ARVL`, economy) — world aggregate ends 1995–2019; no
+  post-COVID values published, so the series simply stops before the collapse.
+- `worldbank-journal-articles-annual` (`IP.JRN.ARTC.SC`, global-indicators)
+- `worldbank-fixed-telephone-annual` (`IT.MLT.MAIN.P2`, global-indicators) — the dying landline.
+- `worldbank-air-passengers-annual` (`IS.AIR.PSGR`, economy)
+- `worldbank-fertility-rate-annual` (`SP.DYN.TFRT.IN`, global-indicators)
+- `worldbank-military-expenditure-annual` (`MS.MIL.XPND.GD.ZS`, economy)
+- `worldbank-birth-rate-annual` (`SP.DYN.CBRT.IN`, global-indicators)
+
+All 7 fetched, promoted to `approved` / `launchReady: true`, all strictly positive. Being World Bank,
+they can only ever pair with non-WB datasets (same-org block).
+
+**Pairing note (deferred by user):** `npm run generate:pairings` now finds **56** structurally-valid
+pairings, but `buildGeneratedChart()` throws for any pairing lacking hand-written copy in
+`src/utils/chart-data.ts` (only 7 exist). So `pairings.json` is intentionally kept trimmed to the 7
+copy-backed pairings to keep the build green. **Do not re-run `generate:pairings` and commit its full
+output** until copy is written for the new pairings, or the build will fail. Growing the *shown* chart
+count is now a copy-writing task, tracked separately from dataset expansion.
+
+## Update, 2026-07-10 (Batch B): first new source organizations — 37 → 40
+
+To break the "only one non–World-Bank annual source" ceiling, added two brand-new orgs (both keyless,
+formats verified live before writing the parsers, now registered in `approved-sources.md`):
+
+- **NOAA Global Monitoring Laboratory — Mauna Loa CO₂** (`noaa-co2-mauna-loa-monthly` 1958→,
+  `noaa-co2-mauna-loa-annual` 1959→, environment, ppm). New fetcher `scripts/fetch-data/noaa-co2.ts`
+  (`npm run fetch:noaa-co2`). Strictly positive; U.S. public-domain / freely reusable with citation.
+  Fetched + promoted to `launchReady: true`.
+- **WDC-SILSO, Royal Observatory of Belgium — monthly sunspot number** (`silso-sunspots-monthly`,
+  physical-events, 1749→ — the longest series in the catalog, 3330 points). New fetcher
+  `scripts/fetch-data/silso-sunspots.ts` (`npm run fetch:silso`). 67 real 0.0 deep-minimum months
+  (kept as data; −1 = missing is dropped). **License = CC BY-NC 4.0 (NonCommercial)** — the only
+  non-permissive source in the catalog; **user approved for launch 2026-07-10 while the site is
+  non-commercial**, re-review if ever monetized. Fetched + promoted to `launchReady: true`.
+
+Domain reach for future pairings: CO₂ (`environment`) can pair with `culture-attention` (the Wikipedia
+article pageviews) and `economy`; sunspots (`physical-events`) can pair with `culture-attention` and
+(if an annual sunspot series is added later) `economy`/`global-indicators`. Still gated on chart copy.
+
+**Session total (through Batch B): 17 → 40 datasets, all `launchReady: true`.**
+
+## Update, 2026-07-10 (Batch 3): Google Books Ngrams word frequency — 40 → 48
+
+Peak-absurd annual data. New fetcher `scripts/fetch-data/ngrams.ts` (`npm run fetch:ngrams`) hits the
+Ngram Viewer's **undocumented-but-public** JSON endpoint (registered in `approved-sources.md` with that
+caveat). 8 words chosen for comedic arcs, each a `culture-attention` annual series, 1800–2019 (220 pts),
+en-2019 corpus, `smoothing=0`: **moist, awesome, groovy, email, dude, apocalypse, spaghetti, existential**.
+
+The fetcher fails loudly unless the returned timeseries has exactly one value per year (guards the
+index→year mapping). Values are tiny positive proportions. Some words are legitimately 0 in early years
+(groovy: 50 zero-years; spaghetti: 52) — real absence from the corpus, not missing data. All 8 fetched
+and promoted to `launchReady: true`. License: underlying Ngram datasets CC BY 3.0 (Google).
+
+**NPS park visits: deferred.** The guessed IRMA visitation JSON endpoint 404s — NPS visitation is a
+manual export from the irma.nps.gov/Stats report builder, not a clean API, and its main value was
+`parks`-domain pairing unlock (pairing is deferred). Revisit as a `manual-download` converter once a
+sample CSV is in hand, or skip in favor of the build-our-own (`computed` provenance) tier.
+
+**Session total: 17 → 48 datasets, all `launchReady: true`.** validate:data, build, and 42 tests green.
+
+## Update, 2026-07-10 (Batch 4): music + product data — manual-download — 6 staged
+
+User asked about Billboard music popularity and iPhone units. **Billboard excluded** — no free API
+(`developer.billboard.com` doesn't resolve), chart data is proprietary, scraping is banned. User chose
+two **manual-download** sources instead (user supplies the raw file, a converter validates it; per
+CLAUDE.md Claude never types the numbers). New `data-import/` folder holds the raw inputs (git-ignored;
+README + templates committed). 6 stubs added, all `launchReady:false` / `needs-verification`:
+
+- **`apple-iphone-units-annual`** (economy, annual) — iPhone units FY2007–2018 compiled by the user from
+  Apple 10-K filings (SEC EDGAR); each row must cite its 10-K. Converter `scripts/fetch-data/apple-iphone.ts`
+  (`npm run fetch:iphone`). Ends 2018 (Apple stopped reporting units); single-company data, disclosed.
+- **5 × RIAA revenue by format** (economy, annual): `riaa-{vinyl,cassette,cd,download,streaming}-revenue-annual`
+  from the RIAA U.S. Sales Database CSV. Converter `scripts/fetch-data/riaa-revenue.ts` (`npm run fetch:riaa`)
+  detects columns by name and fails loudly listing the real format labels if `FORMAT_GROUPS` needs adjusting.
+  **RIAA reuse license is UNCONFIRMED** — kept staged until verified (same handling as SILSO's NC flag).
+
+Converters smoke-tested (missing-file → clean error, nothing written). Catalog now 54 entries, 48 live.
+Awaiting user's raw files, then: run converters → validate → verify RIAA license → log in
+`source-verification-log.md` → promote (RIAA only if license clears).
+
 ## Status
 
 Resolved — this catalog is implemented, not just proposed. Remaining open items (deploy target,

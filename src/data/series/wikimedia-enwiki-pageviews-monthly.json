@@ -1,10 +1,10 @@
 {
   "datasetId": "wikimedia-enwiki-pageviews-monthly",
   "sourceOrganization": "Wikimedia Foundation",
-  "sourceUrl": "https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/all-access/user/monthly/2015070100/2026070900",
+  "sourceUrl": "https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/en.wikipedia/all-access/user/monthly/2015070100/2026071000",
   "unit": "pageviews (user agent, all-access)",
   "frequency": "monthly",
-  "fetchedAt": "2026-07-09T05:43:54.436Z",
+  "fetchedAt": "2026-07-10T19:14:02.697Z",
   "fetchedBy": "scripts/fetch-data/wikimedia.ts",
   "provenance": "script",
   "points": [

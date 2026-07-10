@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/EN.GHG.CO2.PC.CE.AR5?format=json&per_page=1000",
   "unit": "t CO2e per capita",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T08:20:38.636Z",
+  "fetchedAt": "2026-07-10T19:24:51.629Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [
