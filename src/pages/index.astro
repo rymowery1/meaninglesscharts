@@ -1,7 +1,6 @@
 ---
 import Layout from "../components/Layout.astro";
 import ChartGenerator from "../components/ChartGenerator.astro";
-import ExampleGallery from "../components/ExampleGallery.astro";
 import MethodologyNote from "../components/MethodologyNote.astro";
 import { buildAllCharts } from "../utils/chart-data";
 
@@ -16,5 +15,4 @@ const charts = buildAllCharts(rootDir);
   </p>
   <MethodologyNote />
   <ChartGenerator charts={charts} />
-  <ExampleGallery charts={charts} />
 </Layout>

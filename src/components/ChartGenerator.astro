@@ -4,8 +4,10 @@ import ChartCard from "./ChartCard.astro";
 
 interface Props {
   charts: GeneratedChart[];
+  /** Renders every chart at once, stacked, instead of one-at-a-time with a "Generate another" button. */
+  showAll?: boolean;
 }
-const { charts } = Astro.props;
+const { charts, showAll = false } = Astro.props;
 ---
 {charts.length === 0 ? (
   <p class="placeholder-note">
@@ -13,18 +15,27 @@ const { charts } = Astro.props;
     placeholder — check docs/data/dataset-catalog.md and src/data/pairings.json.
   </p>
 ) : (
-  <div class="chart-generator" data-chart-generator>
-    <div class="chart-generator-controls">
-      <button type="button" data-generate-button>Generate another meaningless chart</button>
-    </div>
+  <div class="chart-generator" data-chart-generator data-show-all={showAll ? "true" : "false"}>
+    {!showAll && (
+      <div class="chart-generator-controls">
+        <button type="button" data-generate-button>Generate another meaningless chart</button>
+      </div>
+    )}
     <p class="sr-only" role="status" aria-live="polite" data-generate-announcement></p>
-    {charts.map((chart, i) => <ChartCard chart={chart} active={i === 0} />)}
+    <div class={showAll ? "chart-stack" : undefined}>
+      {charts.map((chart, i) => <ChartCard chart={chart} active={showAll || i === 0} />)}
+    </div>
   </div>
 )}
 
 <style>
   .chart-generator-controls {
     margin-bottom: 1.25rem;
+  }
+  .chart-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
   button[data-generate-button] {
     font-family: var(--font-sans);
@@ -74,6 +85,7 @@ const { charts } = Astro.props;
 
   const generator = document.querySelector<HTMLElement>("[data-chart-generator]");
   if (generator) {
+    const showAll = generator.dataset.showAll === "true";
     const cards = Array.from(generator.querySelectorAll<HTMLElement>("[data-chart-card]"));
     const charts = new Map<string, Chart>();
 
@@ -168,8 +180,12 @@ const { charts } = Astro.props;
       }
     }
 
-    const initialCard = cards.find((c) => c.dataset.active === "true");
-    if (initialCard) renderChart(initialCard);
+    if (showAll) {
+      cards.forEach(renderChart);
+    } else {
+      const initialCard = cards.find((c) => c.dataset.active === "true");
+      if (initialCard) renderChart(initialCard);
+    }
 
     const button = generator.querySelector<HTMLButtonElement>("[data-generate-button]");
     button?.addEventListener("click", () => {

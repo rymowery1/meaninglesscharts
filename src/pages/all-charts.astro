@@ -1,0 +1,18 @@
+---
+import Layout from "../components/Layout.astro";
+import ChartGenerator from "../components/ChartGenerator.astro";
+import { buildAllCharts } from "../utils/chart-data";
+
+const rootDir = `${process.cwd()}/`;
+const charts = buildAllCharts(rootDir);
+---
+<Layout title="All Charts">
+  <h1>All Charts</h1>
+  <p>
+    Every meaningless chart pairing currently live on this site, all {charts.length} of them.
+    Each one plots two real, unrelated datasets on a shared normalized scale — see
+    <a href="/methodology">methodology</a> for how, and <a href="/sources">sources</a> for where
+    the numbers come from.
+  </p>
+  <ChartGenerator charts={charts} showAll />
+</Layout>
