@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/SP.DYN.LE00.IN?format=json&per_page=1000",
   "unit": "years",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T07:23:12.850Z",
+  "fetchedAt": "2026-07-10T08:20:38.550Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

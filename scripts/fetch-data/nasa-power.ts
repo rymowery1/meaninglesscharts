@@ -20,7 +20,8 @@ import type { SeriesFile, SeriesPoint } from "../../src/data/types.ts";
 
 const SCRIPT_PATH = "scripts/fetch-data/nasa-power.ts";
 const SOURCE_ORGANIZATION = "NASA POWER";
-const DATASET_ID = "nasa-power-temp-annual";
+const ANNUAL_DATASET_ID = "nasa-power-temp-annual";
+const MONTHLY_DATASET_ID = "nasa-power-temp-monthly";
 const PARAMETER = "T2M"; // Temperature at 2 Meters, °C
 const LATITUDE = 38.9072; // Washington, D.C., USA
 const LONGITUDE = -77.0369;
@@ -96,41 +97,66 @@ async function main(): Promise<void> {
     throw new Error(`NASA POWER API response is missing the unit for ${PARAMETER}`);
   }
 
-  const points: SeriesPoint[] = Object.entries(series)
+  // NASA POWER returns the unit as "C"; read from the response rather than
+  // hardcoding, so a future API change can't silently mislabel the series.
+  const displayUnit = unit === "C" ? "°C" : unit;
+  const outDir = fileURLToPath(new URL("../../src/data/series/", import.meta.url));
+  mkdirSync(outDir, { recursive: true });
+
+  const annualPoints: SeriesPoint[] = Object.entries(series)
     .filter(([key]) => key.endsWith("13")) // native annual average key, not a computed aggregate
     .map(([key, value]) => ({ year: key.slice(0, 4), value }))
     .filter(({ value }) => value !== fillValue && Number.isFinite(value))
     .map(({ year, value }) => ({ date: `${year}-01-01`, value }))
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  if (points.length === 0) {
+  if (annualPoints.length === 0) {
     throw new Error(`NASA POWER API returned zero valid annual points for ${buildUrl(endYear)}. Refusing to write an empty series file.`);
   }
 
-  // NASA POWER returns the unit as "C"; read from the response rather than
-  // hardcoding, so a future API change can't silently mislabel the series.
-  const displayUnit = unit === "C" ? "°C" : unit;
+  writeSeries(outDir, ANNUAL_DATASET_ID, "annual", displayUnit, buildUrl(endYear), annualPoints);
 
+  // Native monthly keys ("YYYY01".."YYYY12"), not the "13" annual average —
+  // this is the API's own monthly granularity, not a resampling computed by
+  // this script.
+  const monthlyPoints: SeriesPoint[] = Object.entries(series)
+    .filter(([key]) => !key.endsWith("13"))
+    .map(([key, value]) => ({ year: key.slice(0, 4), month: key.slice(4, 6), value }))
+    .filter(({ value }) => value !== fillValue && Number.isFinite(value))
+    .map(({ year, month, value }) => ({ date: `${year}-${month}-01`, value }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  if (monthlyPoints.length === 0) {
+    throw new Error(`NASA POWER API returned zero valid monthly points for ${buildUrl(endYear)}. Refusing to write an empty series file.`);
+  }
+
+  writeSeries(outDir, MONTHLY_DATASET_ID, "monthly", displayUnit, buildUrl(endYear), monthlyPoints);
+}
+
+function writeSeries(
+  outDir: string,
+  datasetId: string,
+  frequency: "annual" | "monthly",
+  unit: string,
+  sourceUrl: string,
+  points: SeriesPoint[],
+): void {
   const seriesFile: SeriesFile = {
-    datasetId: DATASET_ID,
+    datasetId,
     sourceOrganization: SOURCE_ORGANIZATION,
-    sourceUrl: buildUrl(endYear),
-    unit: displayUnit,
-    frequency: "annual",
+    sourceUrl,
+    unit,
+    frequency,
     fetchedAt: new Date().toISOString(),
     fetchedBy: SCRIPT_PATH,
     provenance: "script",
     points,
   };
-
-  const outDir = fileURLToPath(new URL("../../src/data/series/", import.meta.url));
-  mkdirSync(outDir, { recursive: true });
-  const outPath = `${outDir}${DATASET_ID}.json`;
+  const outPath = `${outDir}${datasetId}.json`;
   writeFileSync(outPath, JSON.stringify(seriesFile, null, 2) + "\n", "utf-8");
-
   const firstDate = points[0].date;
   const lastDate = points[points.length - 1].date;
-  console.log(`OK: ${DATASET_ID} — ${points.length} points, ${firstDate} to ${lastDate} — wrote ${outPath}`);
+  console.log(`OK: ${datasetId} — ${points.length} points, ${firstDate} to ${lastDate} — wrote ${outPath}`);
 }
 
 main().catch((err) => {

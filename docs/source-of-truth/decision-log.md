@@ -87,3 +87,30 @@
 - `npm run generate:pairings` found 3 new valid pairings this session (all paired with `nasa-power-temp-annual`, since new World Bank datasets can't pair with each other or with existing World Bank datasets — same-source-organization is blocked): life expectancy, unemployment rate, electric power consumption. Wrote hand-crafted (not templated) title/fake-insight/reveal copy for all 3, checked against the risk-word list, mirrored into `docs/content/chart-copy.md`, `fake-insight-templates.md`, `reveal-templates.md`.
 - Now 13 datasets, 6 pairings. `worldbank-co2-emissions-per-capita-annual` has no valid partner yet (environment domain is blocked from weather, its only same-frequency non-World-Bank option) — kept in the catalog regardless, same precedent as forest-area/agricultural-land.
 - Re-ran `build`, `check`, `test` (42/42), `validate:data` (13/13 launchReady), `validate:pairings` (6/6 valid), `audit:claims` (no new hits) — all pass. Verified live in browser: Sources page shows 13 datasets, generator cycles through all 6 pairings correctly.
+
+## 2026-07-10 (continued) — 4 more datasets, hamburger nav, two more accordions
+
+- User asked to add more sources again. Rather than defaulting to more World Bank `global-indicators`
+  (already saturated at 5 of 13, can't pair with each other), diversified into underrepresented
+  domains: `worldbank-inflation-annual` (economy), `worldbank-renewable-energy-pct-annual`
+  (environment), `worldbank-cereal-yield-annual` (agriculture) — all verified live before use.
+- Extended `scripts/fetch-data/nasa-power.ts` to also emit `nasa-power-temp-monthly` from the same
+  API response already being fetched for the annual series (previously only the "13th month" annual
+  key was read; now the 12 native monthly keys are read too). Found it has no valid pairing partner
+  — a mid-latitude city's monthly temperature necessarily crosses zero every winter, correctly
+  caught by the existing negative-baseline/crosses-zero checks. Real physics, not a bug; didn't
+  need a new normalization rule this time (unlike the mobile-subscriptions baseline-too-small case).
+- Only `worldbank-inflation-annual` produced a new valid pairing (with `nasa-power-temp-annual` —
+  economy isn't blocked from weather). Documented in `dataset-catalog.md` that this is now a
+  structural ceiling: `environment`/`agriculture` domains are permanently blocked from `weather`,
+  so more datasets in those domains won't grow pairing count without a second non-World-Bank
+  annual-frequency source.
+- Now 17 datasets, 7 pairings. `build`/`check`/`test` (42/42)/`validate:data` (17/17)/
+  `validate:pairings` (7/7)/`audit:claims` (26 hits, same known baseline, nothing new) all pass.
+  Verified live: Sources page shows 17 datasets, generator lands on the new inflation pairing via
+  real click-through (not a DOM shortcut).
+- Also this session: turned the Sources page dataset list and the per-chart SourcePanel into
+  accordions (native `<details>`/`<summary>`, matching the reveal-panel pattern already in use;
+  non-causal disclaimer stays outside the accordion, always visible). Condensed the top nav into a
+  hamburger menu — first scoped to mobile only, then per follow-up request extended to all viewport
+  sizes as a floating dropdown, removing the now-unused inline `.site-nav` markup/CSS.

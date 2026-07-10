@@ -25,3 +25,7 @@ Paired 1:1 with `docs/content/fake-insight-templates.md`. Every reveal must make
 ## `nasa-power-temp-annual` + `worldbank-electric-power-consumption-annual`
 
 > Electricity use has grown with rising incomes, more appliances, and expanding power grids worldwide — not with the weather in one U.S. city. A single location's temperature record and a global consumption trend sit on entirely different scales, shaped by entirely different things.
+
+## `nasa-power-temp-annual` + `worldbank-inflation-annual`
+
+> Global inflation reflects monetary policy, oil shocks, supply chains, and a hundred other things — not the temperature in Washington, D.C. A forty-four-year decline in one line and a slow rise in another are two separate stories that happen to share a chart.

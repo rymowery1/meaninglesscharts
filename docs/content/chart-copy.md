@@ -1,6 +1,6 @@
 # Chart Copy
 
-Titles for the 6 real pairings in `src/data/pairings.json`. Descriptive, not a claim — the title names the two series, it doesn't assert a relationship.
+Titles for the 7 real pairings in `src/data/pairings.json`. Descriptive, not a claim — the title names the two series, it doesn't assert a relationship.
 
 | pairing | title |
 |---|---|
@@ -10,3 +10,4 @@ Titles for the 6 real pairings in `src/data/pairings.json`. Descriptive, not a c
 | `nasa-power-temp-annual` + `worldbank-life-expectancy-annual` | Global Life Expectancy vs. Washington, D.C. Annual Temperature |
 | `nasa-power-temp-annual` + `worldbank-unemployment-rate-annual` | Washington, D.C. Annual Temperature vs. Global Unemployment Rate |
 | `nasa-power-temp-annual` + `worldbank-electric-power-consumption-annual` | Washington, D.C. Annual Temperature vs. Global Electric Power Consumption |
+| `nasa-power-temp-annual` + `worldbank-inflation-annual` | Washington, D.C. Annual Temperature vs. Global Inflation Rate |

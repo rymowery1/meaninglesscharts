@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/SP.POP.TOTL?format=json&per_page=1000",
   "unit": "number of people",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T07:23:10.540Z",
+  "fetchedAt": "2026-07-10T08:20:37.890Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

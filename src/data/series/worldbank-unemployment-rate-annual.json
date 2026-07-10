@@ -4,7 +4,7 @@
   "sourceUrl": "https://api.worldbank.org/v2/country/WLD/indicator/SL.UEM.TOTL.ZS?format=json&per_page=1000",
   "unit": "% of total labor force",
   "frequency": "annual",
-  "fetchedAt": "2026-07-10T07:23:16.385Z",
+  "fetchedAt": "2026-07-10T08:20:38.725Z",
   "fetchedBy": "scripts/fetch-data/worldbank.ts",
   "provenance": "script",
   "points": [

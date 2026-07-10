@@ -38,6 +38,9 @@ const INDICATORS: IndicatorConfig[] = [
   { datasetId: "worldbank-unemployment-rate-annual", indicatorCode: "SL.UEM.TOTL.ZS", unit: "% of total labor force" },
   { datasetId: "worldbank-electric-power-consumption-annual", indicatorCode: "EG.USE.ELEC.KH.PC", unit: "kWh per capita" },
   { datasetId: "worldbank-mobile-subscriptions-annual", indicatorCode: "IT.CEL.SETS.P2", unit: "subscriptions per 100 people" },
+  { datasetId: "worldbank-inflation-annual", indicatorCode: "FP.CPI.TOTL.ZG", unit: "annual % change in consumer prices" },
+  { datasetId: "worldbank-renewable-energy-pct-annual", indicatorCode: "EG.FEC.RNEW.ZS", unit: "% of total final energy consumption" },
+  { datasetId: "worldbank-cereal-yield-annual", indicatorCode: "AG.YLD.CREL.KG", unit: "kg per hectare" },
 ];
 
 type WorldBankMetaEntry = {

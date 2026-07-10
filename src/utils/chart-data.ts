@@ -67,6 +67,13 @@ const CHART_COPY: Record<string, ChartCopy> = {
     reveal:
       "Electricity use has grown with rising incomes, more appliances, and expanding power grids worldwide — not with the weather in one U.S. city. A single location's temperature record and a global consumption trend sit on entirely different scales, shaped by entirely different things.",
   },
+  [pairKey("nasa-power-temp-annual", "worldbank-inflation-annual")]: {
+    title: "Washington, D.C. Annual Temperature vs. Global Inflation Rate",
+    fakeInsight:
+      "Since 1981, Washington's summers have warmed while the world's inflation rate has cooled from double digits to a fraction of that — two long trends running in opposite directions, decade after decade.",
+    reveal:
+      "Global inflation reflects monetary policy, oil shocks, supply chains, and a hundred other things — not the temperature in Washington, D.C. A forty-four-year decline in one line and a slow rise in another are two separate stories that happen to share a chart.",
+  },
 };
 
 function round1(n: number): number {

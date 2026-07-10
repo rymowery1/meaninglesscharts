@@ -60,6 +60,37 @@ its 1981 value (0.0015 subscriptions/100 people) would blow the index scale up ~
 Now 6 total pairings in `src/data/pairings.json` (up from 3), all with hand-written chart copy —
 see `docs/content/chart-copy.md`, `fake-insight-templates.md`, `reveal-templates.md`.
 
+## Update, 2026-07-10 (continued): 4 more datasets, one real seasonality finding
+
+Expanded from 13 to 17. Rather than adding more `global-indicators` (already 5 of 13, unable to
+pair with each other), picked underrepresented domains and one new frequency:
+
+- `worldbank-inflation-annual` (economy, `FP.CPI.TOTL.ZG`) — verified live, no deflation years in
+  the world aggregate, so normalization-eligible.
+- `worldbank-renewable-energy-pct-annual` (environment, `EG.FEC.RNEW.ZS`) — verified live; reporting
+  lags to 2020 (IEA energy-balance data takes years to finalize).
+- `worldbank-cereal-yield-annual` (agriculture, `AG.YLD.CREL.KG`) — verified live.
+- `nasa-power-temp-monthly` — extended `scripts/fetch-data/nasa-power.ts` to also write the API's
+  native monthly keys (previously only the annual "13th month" key was used), from the same API
+  call as `nasa-power-temp-annual`.
+
+**Finding:** `nasa-power-temp-monthly` has no valid pairing partner. A single mid-latitude city's
+monthly temperature crosses zero every winter (min -4.89°C, and the 1981-01 baseline itself is
+negative), so it fails the existing negative-baseline/crosses-zero eligibility checks in any
+realistic multi-year shared window — this is real physics, not a bug, and didn't need a new
+normalization rule (unlike the mobile-subscriptions case). Kept in the catalog as real, verified
+data regardless, same precedent as `co2-emissions-per-capita`/`forest-area`/`agricultural-land`.
+
+Of the 4 new datasets, only `worldbank-inflation-annual` (economy, not blocked from weather)
+produced a new valid pairing, again with `nasa-power-temp-annual` — `environment` and `agriculture`
+are both permanently blocked from pairing with `weather`, so renewable-energy and cereal-yield have
+no partner either. This is a structural ceiling: as long as `nasa-power-temp-annual` is the only
+non-World-Bank annual dataset, every new World Bank annual indicator can only ever open a pairing
+if it's `economy`, `global-indicators`, or `culture-attention` domain — adding more `environment`/
+`agriculture` datasets doesn't grow pairing count without a second non-World-Bank annual source.
+
+Now 7 total pairings, 17 datasets.
+
 ## Status
 
 Resolved — this catalog is implemented, not just proposed. Remaining open items (deploy target,

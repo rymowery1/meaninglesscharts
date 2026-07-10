@@ -27,3 +27,7 @@ Language check against CLAUDE.md / `.claude/agents/brand-content.md`: none of th
 ## `nasa-power-temp-annual` + `worldbank-electric-power-consumption-annual`
 
 > As Washington, D.C.'s yearly average temperature climbed, so did how much electricity the average person on Earth uses each year — two rising lines, thirty years apart in origin but perfectly aligned on the page.
+
+## `nasa-power-temp-annual` + `worldbank-inflation-annual`
+
+> Since 1981, Washington's summers have warmed while the world's inflation rate has cooled from double digits to a fraction of that — two long trends running in opposite directions, decade after decade.
