@@ -1,14 +1,93 @@
 ---
+const NAV_LINKS = [
+  { href: "/", label: "Generator" },
+  { href: "/methodology", label: "Methodology" },
+  { href: "/sources", label: "Sources" },
+  { href: "/about", label: "About" },
+];
 ---
 <header class="site-header">
   <div>
     <a class="site-title" href="/">Meaningless Charts</a>
     <div class="site-tagline">The data is real. The relationship is not.</div>
   </div>
-  <nav class="site-nav">
-    <a href="/">Generator</a>
-    <a href="/methodology">Methodology</a>
-    <a href="/sources">Sources</a>
-    <a href="/about">About</a>
+
+  <nav class="site-nav" aria-label="Primary">
+    {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
   </nav>
+
+  <details class="nav-menu">
+    <summary class="nav-menu-toggle" aria-label="Menu">
+      <span class="hamburger-icon" aria-hidden="true"></span>
+    </summary>
+    <nav class="nav-menu-panel" aria-label="Primary">
+      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+  </details>
 </header>
+
+<style>
+  .nav-menu {
+    display: none;
+  }
+  .nav-menu-toggle {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+  }
+  .nav-menu-toggle::-webkit-details-marker {
+    display: none;
+  }
+  .hamburger-icon,
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    background: var(--color-text);
+  }
+  .hamburger-icon {
+    position: relative;
+  }
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+  .hamburger-icon::before {
+    top: -6px;
+  }
+  .hamburger-icon::after {
+    top: 6px;
+  }
+  .nav-menu-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-body-sans-s-size);
+    padding-top: 1rem;
+  }
+  .nav-menu-panel a {
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .nav-menu-panel a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 39.99rem) {
+    .site-nav {
+      display: none;
+    }
+    .nav-menu {
+      display: block;
+      width: 100%;
+    }
+  }
+</style>
