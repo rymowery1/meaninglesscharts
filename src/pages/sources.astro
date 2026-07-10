@@ -17,28 +17,30 @@ const datasets = loadDatasets(rootDir);
   <ul class="dataset-list">
     {datasets.map((d) => (
       <li>
-        <div class="dataset-list-header">
-          <strong>{d.label}</strong>
-          <DatasetBadge domain={d.domain} />
-        </div>
-        <dl>
-          <dt>Source</dt>
-          <dd><a href={d.sourceUrl} rel="noopener noreferrer">{d.sourceOrganization}</a></dd>
-          <dt>Geography</dt>
-          <dd>{d.geography}</dd>
-          <dt>Frequency</dt>
-          <dd>{d.frequency}</dd>
-          <dt>Unit</dt>
-          <dd>{d.unit}</dd>
-          <dt>Date range</dt>
-          <dd>{d.dateRange.start} – {d.dateRange.end}</dd>
-          <dt>License</dt>
-          <dd>{d.licenseOrReuseNotes}</dd>
-          <dt>Methodology</dt>
-          <dd>{d.methodologyNotes}</dd>
-          <dt>Status</dt>
-          <dd>{d.launchReady ? "launch-ready" : d.verificationStatus}</dd>
-        </dl>
+        <details>
+          <summary>
+            <span class="dataset-name">{d.label}</span>
+            <DatasetBadge domain={d.domain} />
+          </summary>
+          <dl>
+            <dt>Source</dt>
+            <dd><a href={d.sourceUrl} rel="noopener noreferrer">{d.sourceOrganization}</a></dd>
+            <dt>Geography</dt>
+            <dd>{d.geography}</dd>
+            <dt>Frequency</dt>
+            <dd>{d.frequency}</dd>
+            <dt>Unit</dt>
+            <dd>{d.unit}</dd>
+            <dt>Date range</dt>
+            <dd>{d.dateRange.start} – {d.dateRange.end}</dd>
+            <dt>License</dt>
+            <dd>{d.licenseOrReuseNotes}</dd>
+            <dt>Methodology</dt>
+            <dd>{d.methodologyNotes}</dd>
+            <dt>Status</dt>
+            <dd>{d.launchReady ? "launch-ready" : d.verificationStatus}</dd>
+          </dl>
+        </details>
       </li>
     ))}
   </ul>
@@ -51,24 +53,32 @@ const datasets = loadDatasets(rootDir);
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.75rem;
   }
   .dataset-list > li {
     border: 1px solid var(--color-border);
     border-radius: 8px;
-    padding: 1rem 1.25rem;
   }
-  .dataset-list-header {
+  .dataset-list summary {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    padding: 1rem 1.25rem;
+  }
+  .dataset-list summary::-webkit-details-marker {
+    color: var(--color-muted);
+  }
+  .dataset-name {
+    font-family: var(--font-serif);
+    font-weight: 700;
   }
   .dataset-list dl {
     font-family: var(--font-sans);
     font-size: var(--text-body-sans-s-size);
     margin: 0;
+    padding: 0 1.25rem 1.25rem;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.2rem 0.75rem;
